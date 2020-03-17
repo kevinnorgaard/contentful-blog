@@ -1,0 +1,23 @@
+#wrapper {
+
+}
+
+.middle {
+  margin: 0 9px 0 9px;
+}
+
+.fa {
+  width: 30px;
+  font-size: 22px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+
+@media only screen and (min-width: 768px) {
+  .fa {
+    width: 22px;
+    font-size: 18px;
+  }
+}

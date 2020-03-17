@@ -8,7 +8,7 @@ import { Entry } from 'contentful';
   styleUrls: ['./blog-list.component.css']
 })
 export class BlogListComponent implements OnInit {
-  private blogs: Entry<any>[] = [];
+  blogs: Entry<any>[] = [];
 
   constructor(private contentfulService: ContentfulService) { }
 

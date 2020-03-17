@@ -1,6 +1,7 @@
-* {box-sizing:border-box}
+#wrapper {
+  padding: 0 20px;
+}
 
-/* Slideshow container */
 .slideshow-container {
   max-width: 918px;
   position: relative;
@@ -91,7 +92,11 @@
 }
 
 .active, .dot:hover {
-  background-color: #717171;
+  background-color: black;
+}
+
+.active {
+  cursor: auto;
 }
 
 /* Fading animation */

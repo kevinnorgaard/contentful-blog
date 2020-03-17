@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 20px;
 }
 
 #intro {
@@ -22,4 +23,10 @@
   text-transform: uppercase;
   font-weight: bold;
   font-size: 14px;
+  cursor: pointer;
+}
+
+.white-btn:hover {
+  background: black;
+  color: white;
 }

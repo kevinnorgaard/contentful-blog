@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  hideDropdown = true;
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.hideDropdown);
   }
 
+  onToggle() {
+    this.hideDropdown = !this.hideDropdown;
+    console.log(this.hideDropdown);
+  }
 }
