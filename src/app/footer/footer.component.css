@@ -1,0 +1,14 @@
+#wrapper {
+  padding: 21px 0 16px 0;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 22px;
+}
+
+#message, #tags {
+  font-style: italic;
+}
+
+#tags {
+  margin-bottom: 9px;
+}

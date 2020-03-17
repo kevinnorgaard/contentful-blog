@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { createClient, Entry } from 'contentful';
 
 const CONFIG = {
-  space: 'wl1z0pal05vy',
-  accessToken: '0e3ec801b5af550c8a1257e8623b1c77ac9b3d8fcfc1b2b7494e3cb77878f92a',
+  space: 'ndctiuutex2v',
+  accessToken: '6fSgN9Lh1LYKLCvIOapivNIKtyWGZxgNP_YSDgK-D5U',
 
   contentTypeIds: {
-    product: '2PqfXUJwE8qSYKuM0U6w8M'
+    blog: 'blogPost'
   }
 };
 
@@ -21,9 +21,9 @@ export class ContentfulService {
 
   constructor() { }
 
-  getProducts(query?: object): Promise<Entry<any>[]> {
+  getBlogs(query?: object): Promise<Entry<any>[]> {
     return this.cdaClient.getEntries(Object.assign({
-      content_type: CONFIG.contentTypeIds.product
+      content_type: CONFIG.contentTypeIds.blog
     }, query))
     .then(res => res.items);
   }

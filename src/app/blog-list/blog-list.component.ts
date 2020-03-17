@@ -13,7 +13,7 @@ export class BlogListComponent implements OnInit {
   constructor(private contentfulService: ContentfulService) { }
 
   ngOnInit() {
-    this.contentfulService.getProducts()
+    this.contentfulService.getBlogs()
         .then(blogs => this.blogs = blogs);
   }
 

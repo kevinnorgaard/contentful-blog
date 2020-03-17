@@ -1,5 +1,9 @@
-<ul class="u-listReset">
-  <li *ngFor="let blog of blogs">
-    {{ blog.fields.productName }}
-  </li>
-</ul>
+<app-title [title]="'Carina Collective'"></app-title>
+
+<div id="wrapper">
+  <ul class="u-listReset">
+    <li *ngFor="let blog of blogs">
+      {{ blog.fields.title }}
+    </li>
+  </ul>
+</div>

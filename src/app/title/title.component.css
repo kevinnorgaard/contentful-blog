@@ -1,0 +1,10 @@
+#wrapper {
+  padding: 69px 0 34px 0;
+  display: flex;
+  justify-content: center;
+}
+
+span {
+  font-size: 60px;
+  font-family: 'Cardo', serif;
+}

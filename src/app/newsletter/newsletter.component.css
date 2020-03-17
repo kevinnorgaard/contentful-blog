@@ -1,0 +1,57 @@
+#wrapper {
+  margin: 0 auto;
+  width: 958px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(245, 244, 244, 1);
+}
+
+label {
+  margin: 34px 0 15px 0;
+  font-family: raleway, sans-serif;
+  font-style: italic;
+  color: #605E5E;
+}
+
+input {
+  font-size: 15px;
+}
+
+#email {
+  width: 459px;
+  height: 35px;
+  border: 1px solid black;
+  padding: 3px 3px 3px 21px;
+  outline: none;
+  margin-bottom: 8px;
+}
+
+#email:hover, #email:focus {
+  width: 455px;
+  height: 31px;
+  border: 3px solid black;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: black;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: black;
+}
+
+#submit-btn {
+  width: 485px;
+  height: 37px;
+  background-color: black;
+  color: white;
+  border: none;
+  margin-bottom: 44px;
+}
