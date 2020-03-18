@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+// import { MatDialogModule } from '@angular/material/dialog';
 
 import { ContentfulService } from './contentful.service';
 import { BlogListComponent } from './blog-list/blog-list.component';
@@ -15,6 +16,7 @@ import { SlideshowComponent } from './slideshow/slideshow.component';
 import { NewsletterComponent } from './newsletter/newsletter.component';
 import { FooterComponent } from './footer/footer.component';
 import { SocialComponent } from './social/social.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { SocialComponent } from './social/social.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    // MatDialogModule,
+    BrowserAnimationsModule
   ],
   exports: [],
   providers: [
