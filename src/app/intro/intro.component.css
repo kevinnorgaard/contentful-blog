@@ -1,0 +1,42 @@
+#intro-container {
+  max-width: 833px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+}
+
+#intro {
+  font-size: 19px;
+  margin-bottom: 16px;
+  color: #2F2E2E;
+}
+
+.white-btn {
+  width: 140px;
+  height: 38px;
+  margin-bottom: 51px;
+  border: 1px solid black;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  background: none;
+  color: black;
+  -webkit-transition: background-color 300ms linear, color 300ms linear;
+  -ms-transition: background-color 300ms linear, color 300ms linear;
+  -moz-transition: background-color 300ms linear, color 300ms linear;
+  -o-transition: background-color 300ms linear, color 300ms linear;
+  transition: background-color 300ms linear, color 300ms linear;
+}
+
+.white-btn:hover {
+  background: black;
+  color: white;
+  -webkit-transition: background-color 300ms linear, color 300ms linear;
+  -ms-transition: background-color 300ms linear, color 300ms linear;
+  -moz-transition: background-color 300ms linear, color 300ms linear;
+  -o-transition: background-color 300ms linear, color 300ms linear;
+  transition: background-color 300ms linear, color 300ms linear;
+}

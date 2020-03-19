@@ -1,0 +1,14 @@
+#wrapper {
+  max-width: 910px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.row {
+  margin: 0 !important;
+}
+
+.category-col {
+  padding: 0 10px;
+}

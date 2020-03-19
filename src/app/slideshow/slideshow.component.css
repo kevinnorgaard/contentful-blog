@@ -37,12 +37,12 @@
   cursor: pointer;
   position: absolute;
   top: 50%;
+  transform: translate(0, -50%);
   width: auto;
-  margin-top: -22px;
   padding: 16px;
-  color: white;
+  color: black;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 34px;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
   user-select: none;
@@ -100,7 +100,7 @@
 }
 
 /* Fading animation */
-.fade {
+.fading {
   -webkit-animation-name: fade;
   -webkit-animation-duration: 1.5s;
   animation-name: fade;

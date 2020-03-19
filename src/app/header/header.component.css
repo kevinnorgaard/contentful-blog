@@ -81,6 +81,11 @@ li a {
 #desktop-header li a {
   font-size: 13px;
   color: #BAB8B8;
+  -webkit-transition: color 300ms linear;
+  -ms-transition: color 300ms linear;
+  -moz-transition: color 300ms linear;
+  -o-transition: color 300ms linear;
+  transition: color 300ms linear;
 }
 
 #desktop-header li a.active {
@@ -89,6 +94,11 @@ li a {
 
 #desktop-header li a:hover {
   color: #2F2E2E;
+  -webkit-transition: color 300ms linear;
+  -ms-transition: color 300ms linear;
+  -moz-transition: color 300ms linear;
+  -o-transition: color 300ms linear;
+  transition: color 300ms linear;
 }
 
 

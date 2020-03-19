@@ -1,0 +1,10 @@
+<div id="wrapper">
+  <div class="row">
+    <div *ngFor="let post of instaPosts; let i = index" class="insta-col col-6 col-md-3">
+      <a [href]="post.fields.url" target="_blank" class="img-container">
+        <img [src]="getImage(i)" />
+        <div class="overlay"></div>
+      </a>
+    </div>
+  </div>
+</div>

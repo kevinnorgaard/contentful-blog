@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { createClient, Entry } from 'contentful';
+import { HttpClient } from '@angular/common/http';
 
-const CONFIG = {
+export const CONFIG = {
   space: 'ndctiuutex2v',
   accessToken: '6fSgN9Lh1LYKLCvIOapivNIKtyWGZxgNP_YSDgK-D5U',
 
   contentTypeIds: {
-    blog: 'blogPost'
+    blog: 'blogPost',
+    insta: 'instagramPost'
   }
 };
 
@@ -19,12 +21,23 @@ export class ContentfulService {
     accessToken: CONFIG.accessToken
   });
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getBlogs(query?: object): Promise<Entry<any>[]> {
     return this.cdaClient.getEntries(Object.assign({
       content_type: CONFIG.contentTypeIds.blog
     }, query))
     .then(res => res.items);
+  }
+
+  getInstaPosts(query?: object): Promise<Entry<any>[]> {
+    return this.cdaClient.getEntries(Object.assign({
+      content_type: CONFIG.contentTypeIds.insta
+    }, query))
+    .then(res => res.items);
+  }
+
+  getImage(url) {
+    return this.http.get(url, {responseType: 'blob'});
   }
 }

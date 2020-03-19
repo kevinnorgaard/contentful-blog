@@ -10,12 +10,9 @@ export class HeaderComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.hideDropdown);
-  }
+  ngOnInit() { }
 
   onToggle() {
     this.hideDropdown = !this.hideDropdown;
-    console.log(this.hideDropdown);
   }
 }

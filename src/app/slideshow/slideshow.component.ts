@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-slideshow',
   templateUrl: './slideshow.component.html',
   styleUrls: ['./slideshow.component.css']
 })
-export class SlideshowComponent implements OnInit {
+export class SlideshowComponent implements OnInit, OnChanges {
   private slideIndex = 0;
   slideHidden: boolean[] = [];
 
@@ -14,8 +14,12 @@ export class SlideshowComponent implements OnInit {
   ngOnInit() {
     const slides = document.getElementsByClassName('mySlides');
     for (let i = 0; i < slides.length; i++) {
-      this.slideHidden.push(false);
+      this.slideHidden.push(true);
     }
+    this.showSlides(this.slideIndex);
+  }
+
+  ngOnChanges() {
     this.showSlides(this.slideIndex);
   }
 

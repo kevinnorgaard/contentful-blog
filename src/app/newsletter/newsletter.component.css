@@ -1,5 +1,5 @@
 #wrapper {
-
+  margin-bottom: 10px;
 }
 
 #newsletter-container {
@@ -33,6 +33,7 @@ input {
   padding: 3px 3px 3px 21px;
   outline: none;
   margin-bottom: 8px;
+  font-weight: bold;
 }
 
 #email:hover, #email:focus {
@@ -63,6 +64,7 @@ input {
   height: 37px;
   border: none;
   margin-bottom: 44px;
+  outline: none;
   background-color: black;
   color: white;
   -webkit-transition: background-color 300ms linear, color 300ms linear;
@@ -80,4 +82,11 @@ input {
   -moz-transition: background-color 300ms linear, color 300ms linear;
   -o-transition: background-color 300ms linear, color 300ms linear;
   transition: background-color 300ms linear, color 300ms linear;
+}
+
+
+@media only screen and (min-width: 768px) {
+  #wrapper {
+    margin-bottom: 60px;
+  }
 }

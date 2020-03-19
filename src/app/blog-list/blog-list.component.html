@@ -1,9 +1,13 @@
-<app-title [title]="'Carina Collective'"></app-title>
-
 <div id="wrapper">
-  <ul class="u-listReset">
-    <li *ngFor="let blog of blogs">
-      {{ blog.fields.title }}
-    </li>
-  </ul>
+  <div class="row">
+    <div *ngFor="let blog of blogs" class="blog-col col-sm-12 col-md-6 col-lg-4">
+      <div class="blog-container">
+        <div class="thumbnail" style="background-image: url('/assets/image1.webp');"></div>
+        <div class="title-container">
+          <div class="title">{{ blog.fields.title }}</div>
+          <div class="description">Make this your own. Add the content you want.</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
