@@ -76,6 +76,7 @@ li a {
   font-family: raleway, sans-serif;
   text-decoration: none;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 #desktop-header li a {

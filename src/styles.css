@@ -1,4 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
 
 html, body {
   height: 100%;
@@ -8,9 +15,10 @@ body {
   margin: 0;
 }
 
-* {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+.cdk-overlay-backdrop {
+  background: rgba(0, 0, 0, .85);
+}
+
+.mat-dialog-container {
+  border-radius: 0 !important;
 }

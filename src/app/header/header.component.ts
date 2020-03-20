@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { SubscribeDialogComponent } from '../subscribe-dialog/subscribe-dialog.component';
 
 @Component({
   selector: 'app-header',
@@ -8,11 +10,20 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   hideDropdown = true;
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit() { }
 
   onToggle() {
     this.hideDropdown = !this.hideDropdown;
+  }
+
+  onClose() {
+    this.hideDropdown = true;
+  }
+
+  openDialog() {
+    this.onClose();
+    this.dialog.open(SubscribeDialogComponent);
   }
 }

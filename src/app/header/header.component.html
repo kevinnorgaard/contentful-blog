@@ -5,12 +5,12 @@
     <i class="fa fa-times toggler" [ngClass]="{'hidden': hideDropdown}" (click)="onToggle()"></i>
   </ul>
   <ul id="dropdown-content" [ngClass]="{'hidden': hideDropdown}">
-    <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="onToggle()">Home</a></li>
-    <li><a routerLink="/blogs/style-beauty" routerLinkActive="active" (click)="onToggle()">Style & Beauty</a></li>
-    <li><a routerLink="/blogs/wellness" routerLinkActive="active" (click)="onToggle()">Wellness</a></li>
-    <li><a routerLink="/blogs/travel" routerLinkActive="active" (click)="onToggle()">Travel</a></li>
-    <li><a routerLink="/about" routerLinkActive="active" (click)="onToggle()">About</a></li>
-    <li><a (click)="onToggle()">Subscribe</a></li>
+    <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="onClose()">Home</a></li>
+    <li><a routerLink="/blogs/style-beauty" routerLinkActive="active" (click)="onClose()">Style & Beauty</a></li>
+    <li><a routerLink="/blogs/wellness" routerLinkActive="active" (click)="onClose()">Wellness</a></li>
+    <!-- <li><a routerLink="/blogs/travel" routerLinkActive="active" (click)="onClose()">Travel</a></li> -->
+    <li><a routerLink="/about" routerLinkActive="active" (click)="onClose()">About</a></li>
+    <li><a (click)="openDialog()">Subscribe</a></li>
   </ul>
 </div>
 
@@ -21,9 +21,9 @@
     <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
     <li><a routerLink="/blogs/style-beauty" routerLinkActive="active">Style & Beauty</a></li>
     <li><a routerLink="/blogs/wellness" routerLinkActive="active">Wellness</a></li>
-    <li><a routerLink="/blogs/travel" routerLinkActive="active">Travel</a></li>
+    <!-- <li><a routerLink="/blogs/travel" routerLinkActive="active">Travel</a></li> -->
     <li><a routerLink="/about" routerLinkActive="active">About</a></li>
-    <li><a>Subscribe</a></li>
+    <li><a (click)="openDialog()">Subscribe</a></li>
     <li><app-social></app-social></li>
   </ul>
 </div>
