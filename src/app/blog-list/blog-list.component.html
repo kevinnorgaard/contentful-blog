@@ -1,8 +1,8 @@
 <div id="wrapper">
   <div class="row">
-    <div *ngFor="let blog of blogs" class="blog-col col-sm-12 col-md-6 col-lg-4">
-      <div class="blog-container">
-        <div class="thumbnail" style="background-image: url('/assets/image1.webp');"></div>
+    <div *ngFor="let blog of blogs; let i = index" class="blog-col col-sm-12 col-md-6 col-lg-4">
+      <div class="blog-container" (click)="gotoBlog(blog)">
+        <div class="thumbnail" [style.backgroundImage]="getImage(i)"></div>
         <div class="title-container">
           <div class="title">{{ blog.fields.title }}</div>
           <div class="description">Make this your own. Add the content you want.</div>

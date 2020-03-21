@@ -1,0 +1,49 @@
+#wrapper {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+#title {
+  text-align: center;
+  margin: 0 auto 20px auto;
+  font-size: 24px;
+}
+
+hr {
+  margin: 1.5em 0;
+  border-top: 1px solid rgba(139, 170, 149, .5);
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.embedded-entry {
+  background-color: rgba(139, 170, 149, .1);
+  border: 1px solid rgba(139, 170, 149, 1);
+  border-bottom: 2px solid rgba(139, 170, 149, 1);
+  border-radius: 3px;
+  padding: 0 5px;
+  cursor: pointer;
+}
+
+.paragraph {
+  margin-bottom: 15px;
+}
+
+.blockquote {
+  border-left: 4px #8baa9580 solid;
+  padding-left: 8px;
+  font-size: 1rem;
+}
+
+a {
+  color: rgb(87, 117, 96);
+  text-decoration: underline;
+}

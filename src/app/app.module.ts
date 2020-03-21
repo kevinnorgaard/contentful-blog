@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material';
 
+import { DisqusModule } from 'ngx-disqus';
+
 import { ContentfulService } from './contentful.service';
 import { BlogListComponent } from './blog-list/blog-list.component';
 import { HeaderComponent } from './header/header.component';
@@ -27,6 +29,8 @@ import { WellnessComponent } from './pages/wellness/wellness.component';
 import { TravelComponent } from './pages/travel/travel.component';
 import { InstagramComponent } from './instagram/instagram.component';
 import { SubscribeDialogComponent } from './subscribe-dialog/subscribe-dialog.component';
+import { NewsletterInputComponent } from './newsletter/newsletter-input/newsletter-input.component';
+import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
   declarations: [
@@ -48,14 +52,17 @@ import { SubscribeDialogComponent } from './subscribe-dialog/subscribe-dialog.co
     WellnessComponent,
     TravelComponent,
     InstagramComponent,
-    SubscribeDialogComponent
+    SubscribeDialogComponent,
+    NewsletterInputComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    DisqusModule.forRoot('test-t0kv4ivpla')
   ],
   exports: [],
   entryComponents: [

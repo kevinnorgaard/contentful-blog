@@ -1,0 +1,21 @@
+<div id="wrapper" *ngIf="blog">
+  <div id="title">{{blog.fields.title}}</div>
+  <div *ngFor="let item of blog.fields.body.content" [ngClass]="item.nodeType">
+    <hr *ngIf="item.nodeType === 'hr'"/>
+
+    <span *ngFor="let item of item.content">
+      <a *ngIf="item.nodeType === 'hyperlink'" href="{{item.data.uri}}" target="_blank">
+        <span *ngFor="let item of item.content">{{item.value}}</span>
+      </a>
+      <span *ngIf="item.nodeType === 'embedded-entry-inline'" class="embedded-entry">{{item.data.target.fields.title}}</span>
+      <span [ngClass]="getStyle(item)">{{item.value}}</span>
+    </span>
+
+    <div *ngIf="item.nodeType === 'blockquote'">
+      <div *ngFor="let item of item.content">
+        <span *ngFor="let item of item.content">{{item.value}}</span>
+      </div>
+    </div>
+  </div>
+  <disqus *ngIf="blog" [identifier]="blog.sys.id"></disqus>
+</div>

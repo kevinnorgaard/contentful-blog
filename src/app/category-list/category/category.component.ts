@@ -8,10 +8,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CategoryComponent implements OnInit {
   @Input() category: string;
   @Input() route: string;
+  @Input() img: string;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  getBackground() {
+    return "url('" + this.img + "')";
+  }
 }

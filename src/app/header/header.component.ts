@@ -24,6 +24,8 @@ export class HeaderComponent implements OnInit {
 
   openDialog() {
     this.onClose();
-    this.dialog.open(SubscribeDialogComponent);
+    this.dialog.open(SubscribeDialogComponent, {
+      width: '485px'
+    });
   }
 }

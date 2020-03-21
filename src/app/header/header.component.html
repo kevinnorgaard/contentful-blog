@@ -6,8 +6,8 @@
   </ul>
   <ul id="dropdown-content" [ngClass]="{'hidden': hideDropdown}">
     <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="onClose()">Home</a></li>
-    <li><a routerLink="/blogs/style-beauty" routerLinkActive="active" (click)="onClose()">Style & Beauty</a></li>
-    <li><a routerLink="/blogs/wellness" routerLinkActive="active" (click)="onClose()">Wellness</a></li>
+    <li><a [routerLink]="['/blogs/style-beauty', '']" routerLinkActive="active" (click)="onClose()">Style & Beauty</a></li>
+    <li><a [routerLink]="['/blogs/wellness', '']" routerLinkActive="active" (click)="onClose()">Wellness</a></li>
     <!-- <li><a routerLink="/blogs/travel" routerLinkActive="active" (click)="onClose()">Travel</a></li> -->
     <li><a routerLink="/about" routerLinkActive="active" (click)="onClose()">About</a></li>
     <li><a (click)="openDialog()">Subscribe</a></li>
@@ -19,8 +19,8 @@
 <div id="desktop">
   <ul id="desktop-header">
     <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
-    <li><a routerLink="/blogs/style-beauty" routerLinkActive="active">Style & Beauty</a></li>
-    <li><a routerLink="/blogs/wellness" routerLinkActive="active">Wellness</a></li>
+    <li><a [routerLink]="['/blogs/style-beauty', '']" routerLinkActive="active">Style & Beauty</a></li>
+    <li><a [routerLink]="['/blogs/wellness', '']" routerLinkActive="active">Wellness</a></li>
     <!-- <li><a routerLink="/blogs/travel" routerLinkActive="active">Travel</a></li> -->
     <li><a routerLink="/about" routerLinkActive="active">About</a></li>
     <li><a (click)="openDialog()">Subscribe</a></li>
