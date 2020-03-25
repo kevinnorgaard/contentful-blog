@@ -15,11 +15,15 @@
 }
 
 label {
-  margin: 34px 0 15px 0;
+  font-size: 24px;
+  margin: 34px 0 10px 0;
   font-family: raleway, sans-serif;
-  font-style: italic;
   color: #605E5E;
   text-align: center;
+}
+
+app-newsletter-input {
+  width: 100%;
 }
 
 @media only screen and (min-width: 768px) {

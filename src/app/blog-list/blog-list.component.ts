@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./blog-list.component.css']
 })
 export class BlogListComponent implements OnInit {
-  @Input() category;
+  @Input() showPreview: boolean;
+  @Input() category: string;
   blogs: Entry<any>[] = [];
   images = [];
 
@@ -19,9 +20,13 @@ export class BlogListComponent implements OnInit {
   ngOnInit() {
     this.contentfulService.getBlogs()
         .then(blogs => {
-          this.filterCategory(blogs);
+          this.filterCategory(blogs.sort(this.sortByDatetime));
           this.loadPosts();
         });
+  }
+
+  sortByDatetime(a: Entry<any>, b: Entry<any>) {
+    return b.fields.published.localeCompare(a.fields.published);
   }
 
   filterCategory(blogs) {
@@ -31,6 +36,7 @@ export class BlogListComponent implements OnInit {
     }
     for (const blog of blogs) {
       if (blog.fields.category === this.category) {
+        console.log(blog);
         this.blogs.push(blog);
       }
     }
@@ -39,7 +45,6 @@ export class BlogListComponent implements OnInit {
   loadPosts() {
     let i = 0;
     for (const post of this.blogs) {
-      console.log(post);
       this.images.push(null);
       this.loadImage(post, i++);
     }
@@ -70,21 +75,32 @@ export class BlogListComponent implements OnInit {
     }
   }
 
-  getImage(i: number) {
+  getImage(i: number, isPreview: boolean) {
+    if (!isPreview && this.showPreview) {
+      i++;
+    }
     return 'url(' + this.images[i] + ')';
   }
 
-  getID(post: Entry<any>) {
-    return post.sys.id;
-  }
-
-  getCategory(post: Entry<any>) {
-    return post.fields.category;
-  }
-
   gotoBlog(blog: Entry<any>) {
-    const category = this.getCategory(blog);
-    const id = this.getID(blog);
-    this.router.navigate(['/blogs/' + category, {id: id}]);
+    this.contentfulService.gotoBlog(blog);
+  }
+
+  formatDatetime(blog) {
+    if (blog) {
+      const date = new Date(blog.fields.published);
+      const month = date.toLocaleString('default', { month: 'long' });
+      const day = date.getUTCDate();
+      const year = date.getUTCFullYear();
+      return month + ' ' + day + ', ' + year;
+    }
+  }
+
+  blogsToList() {
+    if (this.showPreview) {
+      return this.blogs.slice(1, this.blogs.length);
+    } else {
+      return this.blogs;
+    }
   }
 }

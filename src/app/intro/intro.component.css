@@ -9,7 +9,7 @@
 
 #intro {
   font-size: 19px;
-  margin-bottom: 16px;
+  margin-bottom: 38px;
   color: #2F2E2E;
 }
 
@@ -24,6 +24,7 @@
   cursor: pointer;
   background: none;
   color: black;
+  outline: none;
   -webkit-transition: background-color 300ms linear, color 300ms linear;
   -ms-transition: background-color 300ms linear, color 300ms linear;
   -moz-transition: background-color 300ms linear, color 300ms linear;
@@ -39,4 +40,11 @@
   -moz-transition: background-color 300ms linear, color 300ms linear;
   -o-transition: background-color 300ms linear, color 300ms linear;
   transition: background-color 300ms linear, color 300ms linear;
+}
+
+@media only screen and (min-width: 768px) {
+  #intro {
+    font-size: 19px;
+    margin-bottom: 16px;
+  }
 }

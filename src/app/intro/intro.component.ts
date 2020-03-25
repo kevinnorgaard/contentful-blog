@@ -12,4 +12,7 @@ export class IntroComponent implements OnInit {
   ngOnInit() {
   }
 
+  onNav() {
+    window.scrollTo(0, 0);
+  }
 }

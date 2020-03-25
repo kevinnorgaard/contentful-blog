@@ -1,0 +1,13 @@
+<div id="wrapper" (click)="gotoBlog()">
+  <div id="label">New Post</div>
+
+  <div id="image" [style.backgroundImage]="image">
+    <div id="overlay"></div>
+  </div>
+
+  <div id="detail-container">
+    <div id="title">{{ getTitle(blog) }}</div>
+    <div id="date">{{ datetime }}</div>
+    <div id="description">Make this your own. Add the content you want.</div>
+  </div>
+</div>

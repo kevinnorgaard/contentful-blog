@@ -1,10 +1,14 @@
+<app-blog-preview *ngIf="showPreview" [image]="getImage(0, true)" [blog]="blogs[0]"
+                  [datetime]="formatDatetime(blogs[0])"></app-blog-preview>
+
 <div id="wrapper">
   <div class="row">
-    <div *ngFor="let blog of blogs; let i = index" class="blog-col col-sm-12 col-md-6 col-lg-4">
+    <div *ngFor="let blog of blogsToList(); let i = index" class="blog-col col-12 col-md-6 col-lg-4">
       <div class="blog-container" (click)="gotoBlog(blog)">
         <div class="thumbnail" [style.backgroundImage]="getImage(i)"></div>
         <div class="title-container">
           <div class="title">{{ blog.fields.title }}</div>
+          <div class="date">{{ formatDatetime(blog) }}</div>
           <div class="description">Make this your own. Add the content you want.</div>
         </div>
       </div>

@@ -1,21 +1,38 @@
-<div id="wrapper" *ngIf="blog">
-  <div id="title">{{blog.fields.title}}</div>
+<div #blogView id="wrapper" *ngIf="blog">
+  <div id="title">{{ blog.fields.title }}</div>
+  <div id="date">{{ formatDatetime(blog) }}</div>
   <div *ngFor="let item of blog.fields.body.content" [ngClass]="item.nodeType">
     <hr *ngIf="item.nodeType === 'hr'"/>
 
+    <div *ngIf="item.nodeType === 'embedded-asset-block'" [style.width]="getImageWidth(item)"
+         [style.height]="getImageHeight(item)" class="asset-block" [style.backgroundImage]="getImage(item)">
+    </div>
+
+    <span *ngIf="item.nodeType === 'embedded-entry-block'" [ngClass]="getStyle(item)"
+          (click)="gotoBlog(item)">{{ item.value }}</span>
+
     <span *ngFor="let item of item.content">
-      <a *ngIf="item.nodeType === 'hyperlink'" href="{{item.data.uri}}" target="_blank">
-        <span *ngFor="let item of item.content">{{item.value}}</span>
+      <a *ngIf="item.nodeType === 'hyperlink'" href="{{ item.data.uri }}" target="_blank">
+        <span *ngFor="let item of item.content" [ngClass]="getStyle(item)">{{ item.value }}</span>
       </a>
-      <span *ngIf="item.nodeType === 'embedded-entry-inline'" class="embedded-entry">{{item.data.target.fields.title}}</span>
-      <span [ngClass]="getStyle(item)">{{item.value}}</span>
+      <span *ngIf="item.nodeType === 'embedded-entry-inline'" class="embedded-entry"
+            (click)="gotoBlog(item.data.target)">{{ item.data.target.fields.title }}
+        <span class="embedded-icon">&#10095;</span>
+      </span>
+      <span *ngIf="item.nodeType === 'text'" [ngClass]="getStyle(item)">{{ item.value }}</span>
     </span>
 
     <div *ngIf="item.nodeType === 'blockquote'">
       <div *ngFor="let item of item.content">
-        <span *ngFor="let item of item.content">{{item.value}}</span>
+        <span *ngFor="let item of item.content">
+          <span *ngIf="item.nodeType === 'embedded-entry-inline'" class="embedded-entry">{{ item.data.target.fields.title }}</span>
+          <span *ngIf="item.nodeType === 'text'" [ngClass]="getStyle(item)">{{ item.value }}</span>
+        </span>
       </div>
     </div>
+
+    <app-contentful-list *ngIf="item.nodeType === 'unordered-list' || item.nodeType === 'ordered-list'" [listType]="item.nodeType" [item]="item"></app-contentful-list>
   </div>
+
   <disqus *ngIf="blog" [identifier]="blog.sys.id"></disqus>
 </div>

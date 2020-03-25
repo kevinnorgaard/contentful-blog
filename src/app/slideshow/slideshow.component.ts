@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Entry } from 'contentful';
 import { ContentfulService } from '../contentful.service';
 
@@ -7,19 +7,23 @@ import { ContentfulService } from '../contentful.service';
   templateUrl: './slideshow.component.html',
   styleUrls: ['./slideshow.component.css']
 })
-export class SlideshowComponent implements OnInit, OnChanges {
+export class SlideshowComponent implements OnInit {
   popularBlogPosts: Entry<any>[] = [];
-  private slideIndex = 0;
-  slideHidden: boolean[] = [];
   images = [];
+
+  slideHidden: boolean[] = [];
+  slideIndex = 0;
+
+  hover = false;
 
   constructor(private contentfulService: ContentfulService) { }
 
   ngOnInit() {
     this.contentfulService.getBlogs()
       .then(blogPosts => {
-        this.filterPopular(blogPosts); // filter popular
+        this.filterPopular(blogPosts);
         this.initSlides();
+        this.showSlides(this.slideIndex);
       });
   }
 
@@ -33,7 +37,6 @@ export class SlideshowComponent implements OnInit, OnChanges {
 
   initSlides() {
     for (let i = 0; i < this.popularBlogPosts.length; i++) {
-      console.log(this.popularBlogPosts[i]);
       this.loadImage(this.popularBlogPosts[i], i);
       this.slideHidden.push(true);
     }
@@ -69,10 +72,6 @@ export class SlideshowComponent implements OnInit, OnChanges {
     return this.images[i];
   }
 
-  ngOnChanges() {
-    this.showSlides(this.slideIndex);
-  }
-
   plusSlides(n) {
     this.showSlides(this.slideIndex += n);
   }
@@ -91,6 +90,9 @@ export class SlideshowComponent implements OnInit, OnChanges {
       this.slideHidden[i] = true;
     }
     this.slideHidden[this.slideIndex] = false;
-    console.log(this.slideHidden);
+  }
+
+  gotoBlog(blog) {
+    this.contentfulService.gotoBlog(blog);
   }
 }

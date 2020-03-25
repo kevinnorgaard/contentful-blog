@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { ContentfulService } from 'src/app/contentful.service';
-import { Observable, empty, from } from 'rxjs';
+import { empty, from } from 'rxjs';
 import { Entry } from 'contentful';
 
 @Component({

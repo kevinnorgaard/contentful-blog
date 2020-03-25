@@ -2,15 +2,16 @@
   <div class="slideshow-container">
     <div id="label">Popular Posts</div>
 
-    <div *ngFor="let post of popularBlogPosts; let i = index" class="mySlides fading" [ngClass]="{'hidden': slideHidden[i]}"
-      (mouseover)="hover = true" (mouseleave)="hover = false">
-      <div class="numbertext" [ngClass]="{'numbertext-focus': hover}">{{i+1}} / {{slideHidden.length}}</div>
-      <img [src]="getImage(i)" style="width:100%">
-      <div class="text" [ngClass]="{'text-focus': hover}">{{post.fields.title}}</div>
+    <div *ngFor="let item of popularBlogPosts; let i = index" class="mySlides fading" [ngClass]="{'hidden': slideHidden[i]}"
+      (mouseover)="hover = true" (mouseleave)="hover = false" (click)="gotoBlog(item)">
+      <img [src]="getImage(i)" />
+      <div class="text" [ngClass]="{'text-focus': hover}">{{ item.fields.title }}</div>
     </div>
 
-    <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
-    <a class="next" (click)="plusSlides(1)">&#10095;</a>
+    <a class="prev" (click)="plusSlides(-1)"
+      (mouseover)="hover = true" (mouseleave)="hover = false">&#10094;</a>
+    <a class="next" (click)="plusSlides(1)"
+      (mouseover)="hover = true" (mouseleave)="hover = false">&#10095;</a>
   </div>
   <br>
 

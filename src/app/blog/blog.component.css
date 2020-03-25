@@ -1,5 +1,5 @@
 #wrapper {
-  max-width: 800px;
+  max-width: 820px;
   width: 100%;
   margin: 0 auto;
   padding: 10px;
@@ -9,6 +9,19 @@
   text-align: center;
   margin: 0 auto 20px auto;
   font-size: 24px;
+}
+
+#date {
+  text-transform: uppercase;
+  color: grey;
+  margin-bottom: 20px;
+}
+
+.asset-block {
+  margin: 0 auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 hr {
@@ -24,13 +37,22 @@ hr {
   font-style: italic;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 .embedded-entry {
   background-color: rgba(139, 170, 149, .1);
   border: 1px solid rgba(139, 170, 149, 1);
   border-bottom: 2px solid rgba(139, 170, 149, 1);
   border-radius: 3px;
-  padding: 0 5px;
+  padding: 2px 5px;
   cursor: pointer;
+}
+
+.embedded-icon {
+  padding: 0 0 0 3px;
+  color: rgb(87, 117, 96);
 }
 
 .paragraph {

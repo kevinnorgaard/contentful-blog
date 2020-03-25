@@ -3,7 +3,9 @@
     <div *ngFor="let post of instaPosts; let i = index" class="insta-col col-6 col-md-3">
       <a [href]="post.fields.url" target="_blank" class="img-container">
         <img [src]="getImage(i)" />
-        <div class="overlay"></div>
+        <div class="overlay">
+          <span>Caption goes here. #CarinaCollective</span>
+        </div>
       </a>
     </div>
   </div>

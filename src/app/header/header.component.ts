@@ -18,12 +18,17 @@ export class HeaderComponent implements OnInit {
     this.hideDropdown = !this.hideDropdown;
   }
 
-  onClose() {
+  onTab() {
+    this.close();
+    window.scrollTo(0, 0);
+  }
+
+  close() {
     this.hideDropdown = true;
   }
 
   openDialog() {
-    this.onClose();
+    this.close();
     this.dialog.open(SubscribeDialogComponent, {
       width: '485px'
     });

@@ -1,0 +1,16 @@
+<ul *ngIf="listType === 'unordered-list'">
+  <li *ngFor="let item of item.content">
+    <span *ngFor="let item of item.content">
+      <app-contentful-list [listType]="item.nodeType" [item]="item"></app-contentful-list>
+      <span *ngFor="let item of item.content">{{item.value}}</span>
+    </span>
+  </li>
+</ul>
+<ol *ngIf="listType === 'ordered-list'">
+  <li *ngFor="let item of item.content">
+    <span *ngFor="let item of item.content">
+      <app-contentful-list [listType]="item.nodeType" [item]="item"></app-contentful-list>
+      <span *ngFor="let item of item.content">{{item.value}}</span>
+    </span>
+  </li>
+</ol>

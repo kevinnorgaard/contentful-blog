@@ -26,11 +26,12 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryComponent } from './category-list/category/category.component';
 import { StyleBeautyComponent } from './pages/style-beauty/style-beauty.component';
 import { WellnessComponent } from './pages/wellness/wellness.component';
-import { TravelComponent } from './pages/travel/travel.component';
 import { InstagramComponent } from './instagram/instagram.component';
 import { SubscribeDialogComponent } from './subscribe-dialog/subscribe-dialog.component';
 import { NewsletterInputComponent } from './newsletter/newsletter-input/newsletter-input.component';
 import { BlogComponent } from './blog/blog.component';
+import { ContentfulListComponent } from './blog/contentful-list/contentful-list.component';
+import { BlogPreviewComponent } from './blog-preview/blog-preview.component';
 
 @NgModule({
   declarations: [
@@ -50,11 +51,12 @@ import { BlogComponent } from './blog/blog.component';
     CategoryComponent,
     StyleBeautyComponent,
     WellnessComponent,
-    TravelComponent,
     InstagramComponent,
     SubscribeDialogComponent,
     NewsletterInputComponent,
-    BlogComponent
+    BlogComponent,
+    ContentfulListComponent,
+    BlogPreviewComponent
   ],
   imports: [
     BrowserModule,

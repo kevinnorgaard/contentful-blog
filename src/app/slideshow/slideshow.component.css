@@ -26,12 +26,16 @@
 }
 
 .dots {
-  margin: 0 auto 51px auto;
+  margin: 0 auto 25px auto;
   text-align: center;
 }
 
 .hidden {
   display: none;
+}
+
+img {
+  width: 100%;
 }
 
 /* Next & previous buttons */
@@ -50,43 +54,22 @@
   user-select: none;
 }
 
-/* Position the "next button" to the right */
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
 
-/* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .text {
-  color: black;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-}
-
-.text-focus {
   background-color: black;
   color: white;
-}
-
-.numbertext {
-  display: none;
-  color: black;
-  font-size: 12px;
+  font-size: 15px;
   padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-.numbertext-focus {
-  display: block;
+  width: 100%;
+  text-align: center;
 }
 
 .dot {
@@ -120,4 +103,31 @@
 @keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
+}
+
+@media only screen and (min-width: 768px) {
+  .text {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
+    font-size: 15px;
+    bottom: 0;
+    position: absolute;
+    -webkit-transition: background-color 300ms linear, color 300ms linear;
+    -ms-transition: background-color 300ms linear, color 300ms linear;
+    -moz-transition: background-color 300ms linear, color 300ms linear;
+    -o-transition: background-color 300ms linear, color 300ms linear;
+    transition: background-color 300ms linear, color 300ms linear;
+  }
+  .text-focus {
+    background-color: black;
+    color: white;
+    -webkit-transition: background-color 300ms linear, color 300ms linear;
+    -ms-transition: background-color 300ms linear, color 300ms linear;
+    -moz-transition: background-color 300ms linear, color 300ms linear;
+    -o-transition: background-color 300ms linear, color 300ms linear;
+    transition: background-color 300ms linear, color 300ms linear;
+  }
+  .dots {
+    margin: 0 auto 51px auto;
+  }
 }
