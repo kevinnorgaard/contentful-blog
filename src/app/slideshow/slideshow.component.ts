@@ -21,7 +21,7 @@ export class SlideshowComponent implements OnInit {
   ngOnInit() {
     this.contentfulService.getBlogs()
       .then(blogPosts => {
-        this.filterPopular(blogPosts);
+        this.filterPopular(blogPosts.sort(this.contentfulService.sortByPublished));
         this.initSlides();
         this.showSlides(this.slideIndex);
       });
@@ -37,39 +37,13 @@ export class SlideshowComponent implements OnInit {
 
   initSlides() {
     for (let i = 0; i < this.popularBlogPosts.length; i++) {
-      this.loadImage(this.popularBlogPosts[i], i);
       this.slideHidden.push(true);
     }
     this.showSlides(this.slideIndex);
   }
 
-  loadImage(post: Entry<any>, i: number) {
-    const url = 'http:' + post.fields.image.fields.file.url;
-    this.images[i] = this.contentfulService.getImage(url)
-    .subscribe(
-      (val) => {
-        this.convertBlobToImage(val, i);
-      },
-      response => {
-        console.log('GET in error', response);
-      },
-      () => {
-        console.log('GET observable is now completed.');
-      });
-  }
-
-  convertBlobToImage(blob: any, i: number) {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => {
-      this.images[i] = reader.result;
-    }, false);
-    if (blob) {
-      reader.readAsDataURL(blob);
-    }
-  }
-
-  getImage(i: number) {
-    return this.images[i];
+  getImage(blog) {
+    return this.contentfulService.getImage(blog.fields.image, true);
   }
 
   plusSlides(n) {
@@ -90,6 +64,10 @@ export class SlideshowComponent implements OnInit {
       this.slideHidden[i] = true;
     }
     this.slideHidden[this.slideIndex] = false;
+  }
+
+  getTitle(blog) {
+    return this.contentfulService.getTitle(blog);
   }
 
   gotoBlog(blog) {

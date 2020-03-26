@@ -1,13 +1,17 @@
 <div id="mobile">
   <ul id="mobile-header">
-    <li><app-social></app-social></li>
+    <div id="mobile-header-left">
+      <app-social></app-social>
+      <i class="fa fa-search"></i>
+    </div>
     <i class="fa fa-bars toggler" [ngClass]="{'hidden': !hideDropdown}" (click)="onToggle()"></i>
     <i class="fa fa-times toggler" [ngClass]="{'hidden': hideDropdown}" (click)="onToggle()"></i>
   </ul>
   <ul id="dropdown-content" [ngClass]="{'hidden': hideDropdown}">
     <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="onTab()">Home</a></li>
-    <li><a [routerLink]="['/blogs/style-beauty', '']" routerLinkActive="active" (click)="onTab()">Style & Beauty</a></li>
-    <li><a [routerLink]="['/blogs/wellness', '']" routerLinkActive="active" (click)="onTab()">Wellness</a></li>
+    <li><a routerLink="style-beauty" routerLinkActive="active" (click)="onTab()">Style & Beauty</a></li>
+    <li><a routerLink="wellness" routerLinkActive="active" (click)="onTab()">Wellness</a></li>
+    <!-- <li><a [routerLink]="['wellness', '']" routerLinkActive="active" (click)="onTab()">Wellness</a></li> -->
     <li><a routerLink="/about" routerLinkActive="active" (click)="onTab()">About</a></li>
     <li><a (click)="openDialog()">Subscribe</a></li>
   </ul>
@@ -18,10 +22,11 @@
 <div id="desktop">
   <ul id="desktop-header">
     <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="onTab()">Home</a></li>
-    <li><a [routerLink]="['/blogs/style-beauty', '']" routerLinkActive="active" (click)="onTab()">Style & Beauty</a></li>
-    <li><a [routerLink]="['/blogs/wellness', '']" routerLinkActive="active" (click)="onTab()">Wellness</a></li>
-    <li><a routerLink="/about" routerLinkActive="active" (click)="onTab()">About</a></li>
+    <li><a routerLink="style-beauty" routerLinkActive="active" (click)="onTab()">Style & Beauty</a></li>
+    <li><a routerLink="wellness" routerLinkActive="active" (click)="onTab()">Wellness</a></li>
+    <li><a routerLink="about" routerLinkActive="active" (click)="onTab()">About</a></li>
     <li><a (click)="openDialog()">Subscribe</a></li>
-    <li><app-social></app-social></li>
+    <li><app-social [color]="'white'"></app-social></li>
+    <li><i class="fa fa-search"></i></li>
   </ul>
 </div>

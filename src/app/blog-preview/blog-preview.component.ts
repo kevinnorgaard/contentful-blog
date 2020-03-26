@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ContentfulService } from '../contentful.service';
+import { Entry } from 'contentful';
 
 @Component({
   selector: 'app-blog-preview',
@@ -7,23 +8,31 @@ import { ContentfulService } from '../contentful.service';
   styleUrls: ['./blog-preview.component.css']
 })
 export class BlogPreviewComponent implements OnInit {
-  @Input() blog;
-  @Input() image;
-  @Input() datetime;
+  @Input() blog: Entry<any>;
 
   constructor(private contentfulService: ContentfulService) { }
 
-  ngOnInit() {
-    console.log(this.blog);
-  }
+  ngOnInit() {}
 
-  getTitle(blog) {
-    if (blog) {
-      return blog.fields.title;
+  getTitle() {
+    if (this.blog) {
+      return this.contentfulService.getTitle(this.blog);
     }
   }
 
   gotoBlog() {
     this.contentfulService.gotoBlog(this.blog);
+  }
+
+  getDate() {
+    if (this.blog) {
+      return this.contentfulService.getDate(this.blog);
+    }
+  }
+
+  getImage() {
+    if (this.blog) {
+      return this.contentfulService.getImage(this.blog.fields.image, true);
+    }
   }
 }

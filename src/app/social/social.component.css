@@ -1,17 +1,17 @@
-#wrapper {
-
-}
-
 .middle {
   margin: 0 9px 0 9px;
 }
 
 .fa {
+  color: black;
   width: 30px;
   font-size: 22px;
   text-align: center;
   vertical-align: middle;
-  color: black;
+}
+
+.white {
+  color: white;
 }
 
 

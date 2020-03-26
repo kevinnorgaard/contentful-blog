@@ -1,6 +1,10 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ContentfulService } from '../contentful.service';
 import { Entry } from 'contentful';
+import { Router, ActivatedRoute } from '@angular/router';
+import { from } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { DisqusService } from '../disqus.service';
 
 @Component({
   selector: 'app-blog',
@@ -9,14 +13,74 @@ import { Entry } from 'contentful';
 })
 export class BlogComponent implements OnInit {
   @ViewChild('blogView') blogView: ElementRef;
-  blogWidth;
+  blogWidth: number;
 
-  @Input() blog: Entry<any>;
-  imgMap = new Map();
+  blog: Entry<any>;
 
-  constructor(private contentfulService: ContentfulService) { }
+  combine = new Map();
+  skip = [];
+
+  commentCount: number;
+
+  constructor(private contentfulService: ContentfulService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private disqusService: DisqusService) { }
 
   ngOnInit() {
+    this.route.paramMap.pipe(
+      switchMap(params => {
+        const selectedId = params.get('id');
+        return from(this.contentfulService.getBlog(selectedId));
+      })
+    ).subscribe((entries) => {
+        if (entries.length > 1) {
+          this.gotoBlog(entries[0]);
+          return;
+        }
+        this.blog = entries[0];
+        this.setCommentCount();
+        this.parseTags();
+      }
+    );
+  }
+
+  parseTags() {
+    const items = this.blog.fields.body.content;
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      if (this.isTag(item)) {
+        const tag = item.content[0].value;
+        const rowCount = Number(tag.substring(tag.indexOf(':') + 1, tag.indexOf('>')));
+        const range = [];
+        for (let j = 0; j < rowCount; j++) {
+          range.push(i + j + 1);
+        }
+        this.combine.set(i + 1, range);
+        for (let j = 1; j < rowCount; j++) {
+          this.skip.push(i + j + 1);
+        }
+      }
+    }
+  }
+
+  isTag(item) {
+    if (item.nodeType !== 'paragraph') {
+      return false;
+    }
+    const tag = item.content[0].value;
+    if (tag.startsWith('<ROW:') && tag.endsWith('>')) {
+      return true;
+    }
+    return false;
+  }
+
+  isParagraph(item) {
+    return item.nodeType === 'paragraph' && !this.isTag(item);
+  }
+
+  isContentfulList(item) {
+    return item.nodeType === 'unordered-list' || item.nodeType === 'ordered-list';
   }
 
   getStyle(item) {
@@ -30,65 +94,73 @@ export class BlogComponent implements OnInit {
     return styles.join(' ');
   }
 
-  getImageWidth(item) {
-    if (this.blogView) {
-      return (this.blogView.nativeElement.offsetWidth - 20) * item.data.target.fields.file.details.image.width / 800 + 'px'
-    }
-  }
-
-  getImageHeight(item) {
-    if (this.blogView) {
-      return (this.blogView.nativeElement.offsetWidth - 20) * item.data.target.fields.file.details.image.height / 800 + 'px';
-    }
-  }
-
-  getImage(item) {
-    const filename = item.data.target.fields.file.fileName;
-    if (filename && this.imgMap.has(filename) && this.imgMap.get(filename).requested) {
-      return 'url(' + this.imgMap.get(filename).image + ')';
-    } else if (item.data.target.fields.file.url) {
-      const url = 'http:' + item.data.target.fields.file.url;
-      this.imgMap.set(filename, {requested: true});
-      this.loadImage(url, filename);
-      return 'url(' + this.imgMap.get(filename).image + ')';
-    }
-  }
-
-  loadImage(url, filename: string) {
-    this.contentfulService.getImage(url)
-    .subscribe(
-      (val) => {
-        this.convertBlobToImage(val, filename);
-      },
-      response => {
-        console.log('GET in error', response);
-      },
-      () => {
-        console.log('GET observable is now completed.');
-      });
-  }
-
-  convertBlobToImage(blob: any, filename: string) {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => {
-      this.imgMap.set(filename, {requested: true, image: reader.result});
-    }, false);
-    if (blob) {
-      reader.readAsDataURL(blob);
-    }
-  }
-
   gotoBlog(blog) {
     this.contentfulService.gotoBlog(blog);
   }
 
-  formatDatetime(blog) {
+  getID(blog) {
     if (blog) {
-      const date = new Date(blog.fields.published);
-      const month = date.toLocaleString('default', { month: 'long' });
-      const day = date.getUTCDate();
-      const year = date.getUTCFullYear();
-      return month + ' ' + day + ', ' + year;
+      return this.contentfulService.getID(blog);
+    }
+  }
+
+  getTitle(blog) {
+    return this.contentfulService.getTitle(blog);
+  }
+
+  getDate(blog) {
+    return this.contentfulService.getDate(blog);
+  }
+
+  getBody(blog) {
+    return this.contentfulService.getBodyContent(blog);
+  }
+
+  getImage(item) {
+    return this.contentfulService.getImage(item.data.target, true);
+  }
+
+  getImageWidth(item, shared = false) {
+    if (this.blogView) {
+      const width = this.getWidthRatio() * this.getImageDetails(item.data.target).height;
+      return (shared ? width / 2 : width) + 'px';
+    }
+  }
+
+  getImageHeight(item, shared = false) {
+    if (this.blogView) {
+      const height = this.getWidthRatio() * this.getImageDetails(item.data.target).height;
+      return (shared ? height / 2 : height) + 'px';
+    }
+  }
+
+  getWidthRatio() {
+    return (this.blogView.nativeElement.offsetWidth - 20) / 800;
+  }
+
+  getImageDetails(item) {
+    return item.fields.file.details.image;
+  }
+
+  getPinUrl(entry) {
+    if (entry) {
+      return this.contentfulService.getDescription(entry);
+    }
+  }
+
+  commentRoute() {
+    return this.router.url.endsWith('#disqus_thread') ? this.router.url : this.router.url + '#disqus_thread';
+  }
+
+  setCommentCount() {
+    if (this.blog) {
+      return this.disqusService.requestComments().subscribe((body: any) => {
+        for (let item of body.response) {
+          if (item.identifiers.includes(this.getID(this.blog))) {
+            this.commentCount = item.posts;
+          }
+        }
+      });
     }
   }
 }

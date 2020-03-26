@@ -13,6 +13,11 @@
   padding: 33px 24px 26px 24px;
 }
 
+#mobile-header-left {
+  display: flex;
+  align-items: center;
+}
+
 .toggler {
   width: 40px;
   font-size: 30px;
@@ -49,7 +54,7 @@
 #desktop {
   display: none;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: black;
   position: fixed;
   top: 0;
   width: 100%;
@@ -57,6 +62,7 @@
 }
 
 #desktop-header {
+  color: white;
   max-width: 832px;
   width: 100%;
   display: flex;
@@ -65,6 +71,24 @@
   list-style-type: none;
   margin: 15px 0 11px 0;
   padding: 0 30px;
+}
+
+#desktop-header li a {
+  font-size: 13px;
+  color: #BAB8B8;
+  -webkit-transition: color 300ms linear;
+  -ms-transition: color 300ms linear;
+  -moz-transition: color 300ms linear;
+  -o-transition: color 300ms linear;
+  transition: color 300ms linear;
+}
+
+#desktop-header li a.active {
+  color: white;
+}
+
+#desktop-header li a:hover {
+  color: white;
 }
 
 li {
@@ -79,29 +103,10 @@ li a {
   cursor: pointer;
 }
 
-#desktop-header li a {
-  font-size: 13px;
-  color: #BAB8B8;
-  -webkit-transition: color 300ms linear;
-  -ms-transition: color 300ms linear;
-  -moz-transition: color 300ms linear;
-  -o-transition: color 300ms linear;
-  transition: color 300ms linear;
+.fa-search {
+  font-size: 20px;
+  margin: 0 0 0 15px;
 }
-
-#desktop-header li a.active {
-  color: #2F2E2E;
-}
-
-#desktop-header li a:hover {
-  color: #2F2E2E;
-  -webkit-transition: color 300ms linear;
-  -ms-transition: color 300ms linear;
-  -moz-transition: color 300ms linear;
-  -o-transition: color 300ms linear;
-  transition: color 300ms linear;
-}
-
 
 @media only screen and (min-width: 768px) {
   #mobile {
@@ -109,5 +114,9 @@ li a {
   }
   #desktop {
     display: flex;
+  }
+  .fa-search {
+    font-size: 18px;
+    margin: 0;
   }
 }

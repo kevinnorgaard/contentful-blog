@@ -22,6 +22,8 @@ export class ContentfulService {
     accessToken: CONFIG.accessToken
   });
 
+  imgMap = new Map();
+
   constructor(private router: Router,
               private http: HttpClient) { }
 
@@ -46,8 +48,52 @@ export class ContentfulService {
     .then(res => res.items);
   }
 
-  getImage(url) {
+  sortByPublished(a: Entry<any>, b: Entry<any>) {
+    return b.fields.published.localeCompare(a.fields.published);
+  }
+
+  sortByDatetime(a: Entry<any>, b: Entry<any>) {
+    return b.fields.datetime.localeCompare(a.fields.datetime);
+  }
+
+  getImage(item, urlMode = false) {
+    const id = this.getID(item);
+    if (id && this.imgMap.has(id) && this.imgMap.get(id).requested) {
+      return urlMode ? 'url(' + this.imgMap.get(id).image + ')' : this.imgMap.get(id).image;
+    } else if (item.fields.file.url) {
+      const url = 'http:' + item.fields.file.url;
+      this.imgMap.set(id, {requested: true});
+      this.loadImage(url, id);
+      return urlMode ? 'url(' + this.imgMap.get(id).image + ')' : this.imgMap.get(id).image;
+    }
+  }
+
+  loadImage(url: string, id: string) {
+    this.requestImage(url)
+    .subscribe(
+      (val) => {
+        this.convertBlobToImage(val, id);
+      },
+      response => {
+        console.log('GET in error', response);
+      },
+      () => {
+        console.log('GET observable is now completed.');
+      });
+  }
+
+  requestImage(url: string) {
     return this.http.get(url, {responseType: 'blob'});
+  }
+
+  convertBlobToImage(blob: any, filename: string) {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      this.imgMap.set(filename, {requested: true, image: reader.result});
+    }, false);
+    if (blob) {
+      reader.readAsDataURL(blob);
+    }
   }
 
   getID(post: Entry<any>) {
@@ -59,10 +105,31 @@ export class ContentfulService {
   }
 
   gotoBlog(blog: Entry<any>) {
-    const category = this.getCategory(blog);
     const id = this.getID(blog);
-    console.log(category, id);
-    this.router.navigate(['/blogs/' + category, {id: id}]);
+    console.log('Going to', id);
+    this.router.navigate(['/blog', {id: id}]);
     window.scrollTo(0, 0);
+  }
+
+  getTitle(blog) {
+    return blog.fields.title;
+  }
+
+  getDate(blog) {
+    if (blog) {
+      const date = new Date(blog.fields.published);
+      const month = date.toLocaleString('default', { month: 'long' });
+      const day = date.getUTCDate();
+      const year = date.getUTCFullYear();
+      return month + ' ' + day + ', ' + year;
+    }
+  }
+
+  getDescription(blog) {
+    return blog.data.target.fields.description;
+  }
+
+  getBodyContent(blog) {
+    return blog.fields.body.content;
   }
 }

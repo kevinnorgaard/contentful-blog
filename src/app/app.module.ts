@@ -33,6 +33,9 @@ import { BlogComponent } from './blog/blog.component';
 import { ContentfulListComponent } from './blog/contentful-list/contentful-list.component';
 import { BlogPreviewComponent } from './blog-preview/blog-preview.component';
 
+import { CONFIG } from './disqus.service';
+import { ShareBarComponent } from './blog/share-bar/share-bar.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +59,8 @@ import { BlogPreviewComponent } from './blog-preview/blog-preview.component';
     NewsletterInputComponent,
     BlogComponent,
     ContentfulListComponent,
-    BlogPreviewComponent
+    BlogPreviewComponent,
+    ShareBarComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,7 @@ import { BlogPreviewComponent } from './blog-preview/blog-preview.component';
     BrowserAnimationsModule,
     HttpClientModule,
     MatDialogModule,
-    DisqusModule.forRoot('test-t0kv4ivpla')
+    DisqusModule.forRoot(CONFIG.shortName)
   ],
   exports: [],
   entryComponents: [

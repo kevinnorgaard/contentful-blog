@@ -1,7 +1,7 @@
 #wrapper {
   max-width: 910px;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto 30px auto;
   padding: 0;
   background-color: white;
 }
@@ -42,13 +42,13 @@
   text-align: center;
   font-family: raleway, sans-serif;
   color: black;
-  font-size: 24px;
+  font-size: 20px;
   margin: 13px 0 5px 0;
 }
 
 .date {
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 13px;
 }
 
 .description {

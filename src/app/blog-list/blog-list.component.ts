@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ContentfulService } from '../contentful.service';
 import { Entry } from 'contentful';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blog-list',
@@ -12,21 +11,14 @@ export class BlogListComponent implements OnInit {
   @Input() showPreview: boolean;
   @Input() category: string;
   blogs: Entry<any>[] = [];
-  images = [];
 
-  constructor(private contentfulService: ContentfulService,
-              private router: Router) { }
+  constructor(private contentfulService: ContentfulService) { }
 
   ngOnInit() {
     this.contentfulService.getBlogs()
         .then(blogs => {
-          this.filterCategory(blogs.sort(this.sortByDatetime));
-          this.loadPosts();
+          this.filterCategory(blogs.sort(this.contentfulService.sortByPublished));
         });
-  }
-
-  sortByDatetime(a: Entry<any>, b: Entry<any>) {
-    return b.fields.published.localeCompare(a.fields.published);
   }
 
   filterCategory(blogs) {
@@ -35,43 +27,9 @@ export class BlogListComponent implements OnInit {
       return;
     }
     for (const blog of blogs) {
-      if (blog.fields.category === this.category) {
-        console.log(blog);
+      if (blog.fields.category.includes(this.category)) {
         this.blogs.push(blog);
       }
-    }
-  }
-
-  loadPosts() {
-    let i = 0;
-    for (const post of this.blogs) {
-      this.images.push(null);
-      this.loadImage(post, i++);
-    }
-  }
-
-  loadImage(post: Entry<any>, i: number) {
-    const url = 'http:' + post.fields.image.fields.file.url;
-    this.images[i] = this.contentfulService.getImage(url)
-    .subscribe(
-      (val) => {
-        this.convertBlobToImage(val, i);
-      },
-      response => {
-        console.log('GET in error', response);
-      },
-      () => {
-        console.log('GET observable is now completed.');
-      });
-  }
-
-  convertBlobToImage(blob: any, i: number) {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => {
-      this.images[i] = reader.result;
-    }, false);
-    if (blob) {
-      reader.readAsDataURL(blob);
     }
   }
 
@@ -79,28 +37,29 @@ export class BlogListComponent implements OnInit {
     if (!isPreview && this.showPreview) {
       i++;
     }
-    return 'url(' + this.images[i] + ')';
+    return this.contentfulService.getImage(this.blogs[i].fields.image, true);
   }
 
   gotoBlog(blog: Entry<any>) {
     this.contentfulService.gotoBlog(blog);
   }
 
-  formatDatetime(blog) {
+  getTitle(blog) {
     if (blog) {
-      const date = new Date(blog.fields.published);
-      const month = date.toLocaleString('default', { month: 'long' });
-      const day = date.getUTCDate();
-      const year = date.getUTCFullYear();
-      return month + ' ' + day + ', ' + year;
+      return this.contentfulService.getTitle(blog);
+    }
+  }
+
+  getDate(blog) {
+    if (blog) {
+      return this.contentfulService.getDate(blog);
     }
   }
 
   blogsToList() {
-    if (this.showPreview) {
-      return this.blogs.slice(1, this.blogs.length);
-    } else {
-      return this.blogs;
+    if (this.blogs.length === 0) {
+      return [];
     }
+    return this.showPreview ? this.blogs.slice(1, this.blogs.length) : this.blogs;
   }
 }

@@ -1,38 +1,69 @@
 <div #blogView id="wrapper" *ngIf="blog">
-  <div id="title">{{ blog.fields.title }}</div>
-  <div id="date">{{ formatDatetime(blog) }}</div>
-  <div *ngFor="let item of blog.fields.body.content" [ngClass]="item.nodeType">
+  <div id="title">{{ getTitle(blog) }}</div>
+  <div id="date">
+    <span>{{ getDate(blog) }}</span>
+    <a class="disqus-comment-count" href="{{ commentRoute() }}" data-disqus-identifier="getID(blog)">
+      <i class="fa fa-comment"></i>
+      <span>{{ commentCount }}</span>
+    </a>
+  </div>
+
+  <app-share-bar></app-share-bar>
+
+  <div *ngFor="let item of getBody(blog); let i = index" [ngClass]="item.nodeType">
     <hr *ngIf="item.nodeType === 'hr'"/>
 
-    <div *ngIf="item.nodeType === 'embedded-asset-block'" [style.width]="getImageWidth(item)"
+
+    <div *ngIf="item.nodeType === 'embedded-asset-block' && combine.has(i)" class="row">
+      <div *ngFor="let j of combine.get(i)" class="col-6">
+        <div [style.width]="getImageWidth(getBody(blog)[j], true)"
+          [style.height]="getImageHeight(getBody(blog)[j], true)" class="asset-block" [style.backgroundImage]="getImage(getBody(blog)[j])">
+          <a *ngIf="getPinUrl(getBody(blog)[j])" class="asset-block-overlay pin"
+             href="{{ getPinUrl(getBody(blog)[j]) }}" target="_blank">
+            <i class="fa fa-pinterest"></i><span>pin it</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="item.nodeType === 'embedded-asset-block' && !combine.has(i) && !skip.includes(i)" [style.width]="getImageWidth(item)"
          [style.height]="getImageHeight(item)" class="asset-block" [style.backgroundImage]="getImage(item)">
+      <a *ngIf="getPinUrl(item)" class="asset-block-overlay pin"
+         href="{{ getPinUrl(item) }}" target="_blank">
+        <i class="fa fa-pinterest"></i><span>pin it</span>
+      </a>
     </div>
 
     <span *ngIf="item.nodeType === 'embedded-entry-block'" [ngClass]="getStyle(item)"
           (click)="gotoBlog(item)">{{ item.value }}</span>
 
-    <span *ngFor="let item of item.content">
-      <a *ngIf="item.nodeType === 'hyperlink'" href="{{ item.data.uri }}" target="_blank">
-        <span *ngFor="let item of item.content" [ngClass]="getStyle(item)">{{ item.value }}</span>
-      </a>
-      <span *ngIf="item.nodeType === 'embedded-entry-inline'" class="embedded-entry"
-            (click)="gotoBlog(item.data.target)">{{ item.data.target.fields.title }}
-        <span class="embedded-icon">&#10095;</span>
-      </span>
-      <span *ngIf="item.nodeType === 'text'" [ngClass]="getStyle(item)">{{ item.value }}</span>
-    </span>
-
     <div *ngIf="item.nodeType === 'blockquote'">
       <div *ngFor="let item of item.content">
         <span *ngFor="let item of item.content">
-          <span *ngIf="item.nodeType === 'embedded-entry-inline'" class="embedded-entry">{{ item.data.target.fields.title }}</span>
+          <span *ngIf="item.nodeType === 'embedded-entry-inline'" class="embedded-entry">{{ getTitle(item) }}</span>
           <span *ngIf="item.nodeType === 'text'" [ngClass]="getStyle(item)">{{ item.value }}</span>
         </span>
       </div>
     </div>
 
-    <app-contentful-list *ngIf="item.nodeType === 'unordered-list' || item.nodeType === 'ordered-list'" [listType]="item.nodeType" [item]="item"></app-contentful-list>
+    <app-contentful-list *ngIf="isContentfulList(item)" [listType]="item.nodeType" [item]="item"></app-contentful-list>
+
+    <div *ngIf="isParagraph(item)">
+      <span *ngFor="let item of item.content">
+        <a *ngIf="item.nodeType === 'hyperlink'" href="{{ item.data.uri }}" target="_blank">
+          <span *ngFor="let item of item.content" [ngClass]="getStyle(item)">{{ item.value }}</span>
+        </a>
+        <span *ngIf="item.nodeType === 'embedded-entry-inline'" class="embedded-entry"
+              (click)="gotoBlog(item.data.target)">{{ getTitle(item.data.target) }}
+          <span class="embedded-icon">&#10095;</span>
+        </span>
+        <span *ngIf="item.nodeType === 'text'" [ngClass]="getStyle(item)">{{ item.value }}</span>
+      </span>
+    </div>
+
   </div>
 
-  <disqus *ngIf="blog" [identifier]="blog.sys.id"></disqus>
+  <disqus [identifier]="getID(blog)"></disqus>
 </div>
+
+<app-blog-list></app-blog-list>

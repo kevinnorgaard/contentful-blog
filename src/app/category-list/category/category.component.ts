@@ -18,4 +18,8 @@ export class CategoryComponent implements OnInit {
   getBackground() {
     return "url('" + this.img + "')";
   }
+
+  onTab() {
+    window.scrollTo(0, 0);
+  }
 }

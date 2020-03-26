@@ -3,13 +3,13 @@
   align-items: center;
   max-width: 1200px;
   width: 100%;
-  margin: 0 auto 25px auto;
+  margin: 50px auto 20px auto;
 }
 
 #title {
   font-family: 'Cardo', serif;
-  font-size: 25px;
-  letter-spacing: 2.5px;
+  font-size: 30px;
+  letter-spacing: 3px;
   white-space: nowrap;
   margin: 0 20px;
 }

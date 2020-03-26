@@ -16,3 +16,8 @@ label {
   color: #605E5E;
   text-align: center;
 }
+
+#social-container {
+  display: flex;
+  justify-content: center;
+}

@@ -4,8 +4,8 @@
 
     <div *ngFor="let item of popularBlogPosts; let i = index" class="mySlides fading" [ngClass]="{'hidden': slideHidden[i]}"
       (mouseover)="hover = true" (mouseleave)="hover = false" (click)="gotoBlog(item)">
-      <img [src]="getImage(i)" />
-      <div class="text" [ngClass]="{'text-focus': hover}">{{ item.fields.title }}</div>
+      <div class="image" [style.backgroundImage]="getImage(item)"></div>
+      <div class="text" [ngClass]="{'text-focus': hover}">{{ getTitle(item) }}</div>
     </div>
 
     <a class="prev" (click)="plusSlides(-1)"
