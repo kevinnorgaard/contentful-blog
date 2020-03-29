@@ -61,7 +61,7 @@ export class ContentfulService {
     if (id && this.imgMap.has(id) && this.imgMap.get(id).requested) {
       return urlMode ? 'url(' + this.imgMap.get(id).image + ')' : this.imgMap.get(id).image;
     } else if (item.fields.file.url) {
-      const url = 'http:' + item.fields.file.url;
+      const url = 'https:' + item.fields.file.url;
       this.imgMap.set(id, {requested: true});
       this.loadImage(url, id);
       return urlMode ? 'url(' + this.imgMap.get(id).image + ')' : this.imgMap.get(id).image;
@@ -107,7 +107,7 @@ export class ContentfulService {
   gotoBlog(blog: Entry<any>) {
     const id = this.getID(blog);
     console.log('Going to', id);
-    this.router.navigate(['/blog', {id: id}]);
+    this.router.navigate(['/blog', id]);
     window.scrollTo(0, 0);
   }
 

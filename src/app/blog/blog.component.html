@@ -1,14 +1,11 @@
 <div #blogView id="wrapper" *ngIf="blog">
   <div id="title">{{ getTitle(blog) }}</div>
-  <div id="date">
-    <span>{{ getDate(blog) }}</span>
-    <a class="disqus-comment-count" href="{{ commentRoute() }}" data-disqus-identifier="getID(blog)">
-      <i class="fa fa-comment"></i>
-      <span>{{ commentCount }}</span>
-    </a>
-  </div>
+  <div id="date">{{ getDate(blog) }}</div>
+  <a class="disqus-comment-count" href="{{ commentRoute() }}" data-disqus-identifier="getID(blog)">
+    Comments
+  </a>
 
-  <app-share-bar></app-share-bar>
+  <app-share-bar [title]="getTitle(blog)" [categories]="getCategories(blog)"></app-share-bar>
 
   <div *ngFor="let item of getBody(blog); let i = index" [ngClass]="item.nodeType">
     <hr *ngIf="item.nodeType === 'hr'"/>
@@ -63,7 +60,7 @@
 
   </div>
 
-  <disqus [identifier]="getID(blog)"></disqus>
+  <!-- <disqus [identifier]="getID(blog)"></disqus> -->
 </div>
 
 <app-blog-list></app-blog-list>

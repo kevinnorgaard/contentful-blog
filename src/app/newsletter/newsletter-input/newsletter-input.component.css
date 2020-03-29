@@ -1,9 +1,15 @@
 #wrapper {
   max-width: 485px;
   width: 100%;
+  margin: 0 auto;
+}
+
+form {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 44px;
 }
 
 input {
@@ -11,7 +17,9 @@ input {
 }
 
 #email {
-  flex: 1;
+  max-width: 485px;
+  width: 100%;
+  /* flex: 1; */
   height: 34px;
   border: 1px solid black;
   padding: 3px 3px 3px 21px;
@@ -41,13 +49,13 @@ input {
 }
 
 #submit-btn {
+  margin-bottom: 8px;
   text-transform: uppercase;
   cursor: pointer;
   max-width: 485px;
   width: 100%;
   height: 34px;
   border: none;
-  margin-bottom: 44px;
   outline: none;
   background-color: black;
   color: white;
@@ -64,7 +72,7 @@ input {
 }
 
 @media only screen and (min-width: 768px) {
-  #wrapper {
+  form {
     flex-direction: row;
   }
   #submit-btn {

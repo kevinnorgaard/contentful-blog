@@ -17,15 +17,15 @@
 
 label {
   letter-spacing: 1px;
-  font-size: 24px;
+  font-size: 26px;
   margin: 34px 0 5px 0;
-  font-family: raleway, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   text-align: center;
 }
 
 .text {
   padding: 0 10px;
-  font-family: raleway, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #605E5E;
   margin-bottom: 10px;
   text-align: center;

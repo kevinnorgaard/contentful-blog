@@ -12,23 +12,8 @@ import { Entry } from 'contentful';
 })
 export class WellnessComponent implements OnInit {
   category = 'wellness';
-  blog: Entry<any>;
 
-  constructor(private contentful: ContentfulService,
-    private route: ActivatedRoute) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.route.paramMap.pipe(
-      switchMap(params => {
-        const selectedId = params.get('id');
-        if (!selectedId || selectedId === '') {
-          return empty();
-        }
-        return from(this.contentful.getBlog(selectedId));
-      })
-    ).subscribe((entries) => {
-        this.blog = entries[0];
-      }
-    );
-  }
+  ngOnInit() {}
 }

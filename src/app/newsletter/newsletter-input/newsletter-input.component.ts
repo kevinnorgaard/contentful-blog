@@ -6,10 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./newsletter-input.component.css']
 })
 export class NewsletterInputComponent implements OnInit {
+  response;
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-style-beauty',
@@ -8,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class StyleBeautyComponent implements OnInit {
   category = 'style-beauty';
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {}
 }

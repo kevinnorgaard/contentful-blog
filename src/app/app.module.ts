@@ -33,7 +33,7 @@ import { BlogComponent } from './blog/blog.component';
 import { ContentfulListComponent } from './blog/contentful-list/contentful-list.component';
 import { BlogPreviewComponent } from './blog-preview/blog-preview.component';
 
-import { CONFIG } from './disqus.service';
+import { CONFIG, DisqusService } from './disqus.service';
 import { ShareBarComponent } from './blog/share-bar/share-bar.component';
 
 @NgModule({
@@ -75,7 +75,8 @@ import { ShareBarComponent } from './blog/share-bar/share-bar.component';
     SubscribeDialogComponent
   ],
   providers: [
-    ContentfulService
+    ContentfulService,
+    DisqusService
   ],
   bootstrap: [AppComponent]
 })

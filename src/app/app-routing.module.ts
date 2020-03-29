@@ -10,9 +10,9 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'style-beauty', component: StyleBeautyComponent },
   { path: 'wellness', component: WellnessComponent },
-  { path: 'blog', component: BlogComponent },
   { path: 'blog/:id', component: BlogComponent },
-  { path: 'about', component: AboutComponent }
+  { path: 'about', component: AboutComponent },
+  { path: '**', redirectTo: '/' },
 ];
 
 @NgModule({

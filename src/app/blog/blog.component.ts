@@ -25,7 +25,8 @@ export class BlogComponent implements OnInit {
   constructor(private contentfulService: ContentfulService,
               private router: Router,
               private route: ActivatedRoute,
-              private disqusService: DisqusService) { }
+              private disqusService: DisqusService) {
+              }
 
   ngOnInit() {
     this.route.paramMap.pipe(
@@ -34,10 +35,6 @@ export class BlogComponent implements OnInit {
         return from(this.contentfulService.getBlog(selectedId));
       })
     ).subscribe((entries) => {
-        if (entries.length > 1) {
-          this.gotoBlog(entries[0]);
-          return;
-        }
         this.blog = entries[0];
         this.setCommentCount();
         this.parseTags();
@@ -102,6 +99,10 @@ export class BlogComponent implements OnInit {
     if (blog) {
       return this.contentfulService.getID(blog);
     }
+  }
+
+  getCategories(blog) {
+    return this.contentfulService.getCategory(blog);
   }
 
   getTitle(blog) {

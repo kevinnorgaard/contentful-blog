@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { SubscribeDialogComponent } from 'src/app/subscribe-dialog/subscribe-dialog.component';
 
 @Component({
   selector: 'app-about',
@@ -7,8 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
+  }
+
+  openDialog() {
+    this.dialog.open(SubscribeDialogComponent, {
+      width: '485px'
+    });
   }
 }
