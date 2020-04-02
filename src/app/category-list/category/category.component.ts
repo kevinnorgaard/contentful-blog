@@ -19,7 +19,7 @@ export class CategoryComponent implements OnInit {
     return "url('" + this.img + "')";
   }
 
-  onTab() {
-    window.scrollTo(0, 0);
-  }
+  // onTab() {
+  //   window.scrollTo(0, 0);
+  // }
 }

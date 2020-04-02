@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { SubscribeDialogComponent } from 'src/app/subscribe-dialog/subscribe-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { SubscribeDialogComponent } from '../../subscribe-dialog/subscribe-dialog.component';
 
 @Component({
   selector: 'app-about',

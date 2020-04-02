@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Meta } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { DisqusModule } from 'ngx-disqus';
 
@@ -63,7 +63,7 @@ import { ShareBarComponent } from './blog/share-bar/share-bar.component';
     ShareBarComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -76,7 +76,8 @@ import { ShareBarComponent } from './blog/share-bar/share-bar.component';
   ],
   providers: [
     ContentfulService,
-    DisqusService
+    DisqusService,
+    Meta
   ],
   bootstrap: [AppComponent]
 })

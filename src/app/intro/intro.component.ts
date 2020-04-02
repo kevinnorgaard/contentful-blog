@@ -13,6 +13,6 @@ export class IntroComponent implements OnInit {
   }
 
   onNav() {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   }
 }

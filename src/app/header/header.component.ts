@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { SubscribeDialogComponent } from '../subscribe-dialog/subscribe-dialog.component';
 
 @Component({
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
 
   onTab() {
     this.close();
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   }
 
   close() {

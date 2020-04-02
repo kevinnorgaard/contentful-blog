@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { from } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { DisqusService } from '../disqus.service';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blog',
@@ -25,7 +26,8 @@ export class BlogComponent implements OnInit {
   constructor(private contentfulService: ContentfulService,
               private router: Router,
               private route: ActivatedRoute,
-              private disqusService: DisqusService) {
+              private disqusService: DisqusService,
+              private metaService: Meta) {
               }
 
   ngOnInit() {
@@ -36,10 +38,17 @@ export class BlogComponent implements OnInit {
       })
     ).subscribe((entries) => {
         this.blog = entries[0];
+        this.updateOgTags();
         this.setCommentCount();
         this.parseTags();
       }
     );
+  }
+
+  updateOgTags() {
+    this.metaService.updateTag({ property: 'og:type', content: 'article' });
+    this.metaService.updateTag({ property: 'og:image', content: 'https://i.ytimg.com/vi/UKeI9bdB6Qg/maxresdefault.jpg' });
+    this.metaService.addTag({ property: 'og:title', content: this.getTitle(this.blog) });
   }
 
   parseTags() {
