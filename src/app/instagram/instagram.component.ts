@@ -18,6 +18,7 @@ export class InstagramComponent implements OnInit {
     this.contentfulService.getInstaPosts()
       .then(instaPosts => {
         this.instaPosts = instaPosts.sort(this.contentfulService.sortByDatetime);
+        console.log(this.instaPosts[0]);
       });
   }
 
@@ -25,4 +26,7 @@ export class InstagramComponent implements OnInit {
     return this.contentfulService.getImage(post.fields.image, true);
   }
 
+  getCaption(post) {
+    return post.fields.caption;
+  }
 }

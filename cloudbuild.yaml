@@ -1,36 +1,26 @@
 steps:
 # build the base image using Kaniko for caching
 - name: 'gcr.io/kaniko-project/executor:latest'
-  waitFor: ['-']
   id: DOCKER_BUILD
   args:
-  - --destination=gcr.io/$PROJECT_ID/universal:$BUILD_ID
+  - --destination=gcr.io/$PROJECT_ID/universal
   - --cache=true
 
 # deploy the container to Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
-  - beta
-  - run
-  - deploy
-  - universal
-  - --image=gcr.io/$PROJECT_ID/universal:$BUILD_ID
-  - --region=us-central1
+  - 'run'
+  - 'deploy'
+  - 'universal'
+  - '--image'
+  - 'gcr.io/$PROJECT_ID/universal'
+  - '--platform'
+  - 'managed'
+  - '--region'
+  - 'us-west1'
+  - '--allow-unauthenticated'
   id: DEPLOY_CLOUD_RUN
   waitFor: ['DOCKER_BUILD']
-
-# deploy the Firebase application
-- name: 'gcr.io/$PROJECT_ID/universal:$BUILD_ID'
-  dir: '/usr/src/app'
-  id: DEPLOY_FIREBASE
-  entrypoint: 'sh'
-  args:
-  - -c
-  - ./node_modules/.bin/firebase deploy --token $$FIREBASE_TOKEN --non-interactive
-  secretEnv: ['FIREBASE_TOKEN']
-  waitFor: ['DOCKER_BUILD']
-
-#secrets:
 
 images:
 - gcr.io/$PROJECT_ID/universal

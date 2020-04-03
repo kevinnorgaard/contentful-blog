@@ -4,7 +4,7 @@
       <a [href]="post.fields.url" target="_blank" class="img-container">
         <div class="instaImage" [style.backgroundImage]="getImage(post)"></div>
         <div class="overlay">
-          <span>Caption goes here. #CarinaCollective</span>
+          <span>{{ getCaption(post) }}</span>
         </div>
       </a>
     </div>
