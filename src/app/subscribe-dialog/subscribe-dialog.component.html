@@ -1,6 +1,11 @@
-<div id="wrapper">
-  <div id="title">JOIN THE COLLECTIVE</div>
-  <label>Get on the list for new blog posts and my exclusive newsletter!</label>
-  <app-newsletter-input></app-newsletter-input>
-  <div id="social-container"><app-social></app-social></div>
+<div id="background" [ngClass]="isOpen() ? 'opened' : 'closed'">
+  <div id="border">
+    <i id="close-btn" class="fa fa-times" (click)="close()"></i>
+    <div id="wrapper">
+      <div id="title">JOIN THE COLLECTIVE</div>
+      <label>Get on the list for new blog posts and my exclusive newsletter!</label>
+      <app-newsletter-input></app-newsletter-input>
+      <div id="social-container"><app-social></app-social></div>
+    </div>
+  </div>
 </div>

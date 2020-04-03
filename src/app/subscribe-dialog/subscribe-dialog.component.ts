@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogService } from '../dialog.service';
 
 @Component({
   selector: 'app-subscribe-dialog',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubscribeDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialogService: DialogService) { }
+
+  isOpen() {
+    return this.dialogService.isOpen();
+  }
+
+  close() {
+    return this.dialogService.close();
+  }
 
   ngOnInit() {
   }

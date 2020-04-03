@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { SubscribeDialogComponent } from '../subscribe-dialog/subscribe-dialog.component';
+import { DialogService } from '../dialog.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +9,7 @@ import { SubscribeDialogComponent } from '../subscribe-dialog/subscribe-dialog.c
 export class HeaderComponent implements OnInit {
   hideDropdown = true;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialogService: DialogService) { }
 
   ngOnInit() { }
 
@@ -18,19 +17,11 @@ export class HeaderComponent implements OnInit {
     this.hideDropdown = !this.hideDropdown;
   }
 
-  onTab() {
-    this.close();
-    // window.scrollTo(0, 0);
-  }
-
   close() {
     this.hideDropdown = true;
   }
 
   openDialog() {
-    this.close();
-    this.dialog.open(SubscribeDialogComponent, {
-      width: '485px'
-    });
+    this.dialogService.open();
   }
 }

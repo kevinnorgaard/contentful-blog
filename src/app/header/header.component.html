@@ -8,12 +8,11 @@
     <i class="fa fa-times toggler" [ngClass]="{'hidden': hideDropdown}" (click)="onToggle()"></i>
   </ul>
   <ul id="dropdown-content" [ngClass]="{'hidden': hideDropdown}">
-    <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="onTab()">Home</a></li>
-    <li><a routerLink="style-beauty" routerLinkActive="active" (click)="onTab()">Style & Beauty</a></li>
-    <li><a routerLink="wellness" routerLinkActive="active" (click)="onTab()">Wellness</a></li>
-    <!-- <li><a [routerLink]="['wellness', '']" routerLinkActive="active" (click)="onTab()">Wellness</a></li> -->
-    <li><a routerLink="/about" routerLinkActive="active" (click)="onTab()">About</a></li>
-    <li><a (click)="openDialog()">Subscribe</a></li>
+    <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="close()">Home</a></li>
+    <li><a routerLink="style-beauty" routerLinkActive="active" (click)="close()">Style & Beauty</a></li>
+    <li><a routerLink="wellness" routerLinkActive="active" (click)="close()">Wellness</a></li>
+    <li><a routerLink="/about" routerLinkActive="active" (click)="close()">About</a></li>
+    <li><a (click)="openDialog()" (click)="close()">Subscribe</a></li>
   </ul>
 </div>
 
@@ -21,10 +20,10 @@
 
 <div id="desktop">
   <ul id="desktop-header">
-    <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="onTab()">Home</a></li>
-    <li><a routerLink="style-beauty" routerLinkActive="active" (click)="onTab()">Style & Beauty</a></li>
-    <li><a routerLink="wellness" routerLinkActive="active" (click)="onTab()">Wellness</a></li>
-    <li><a routerLink="about" routerLinkActive="active" (click)="onTab()">About</a></li>
+    <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+    <li><a routerLink="style-beauty" routerLinkActive="active">Style & Beauty</a></li>
+    <li><a routerLink="wellness" routerLinkActive="active">Wellness</a></li>
+    <li><a routerLink="about" routerLinkActive="active">About</a></li>
     <li><a (click)="openDialog()">Subscribe</a></li>
     <li><app-social [color]="'white'"></app-social></li>
     <li><i class="fa fa-search"></i></li>

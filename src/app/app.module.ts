@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule } from '@angular/material/dialog';
 
 import { DisqusModule } from 'ngx-disqus';
 
@@ -67,7 +66,6 @@ import { ShareBarComponent } from './blog/share-bar/share-bar.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatDialogModule,
     DisqusModule.forRoot(CONFIG.shortName)
   ],
   exports: [],

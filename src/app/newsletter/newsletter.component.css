@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: rgba(245, 244, 244, 1); */
+  justify-content: center;
   background-color: rgba(168,159,146, .2);
   padding: 0 10px;
 }
