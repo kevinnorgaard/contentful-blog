@@ -15,7 +15,7 @@
     "build:ssr": "ng build --prod && ng run contentful-blog:server:production",
     "build:all": "npm run build:prod && npm run build:ssr",
     "serve:ssr": "node dist/contentful-blog-server/main.js",
-    "ssr": "npm run build:all && npm run serve:ssr"
+    "ssr": "npm run build:ssr && npm run serve:ssr"
   },
   "private": true,
   "dependencies": {
@@ -30,8 +30,6 @@
     "@angular/platform-browser-dynamic": "~9.1.0",
     "@angular/platform-server": "~9.1.0",
     "@angular/router": "~9.1.0",
-    "@google-cloud/debug-agent": "^4.2.2",
-    "@google-cloud/trace-agent": "^4.2.5",
     "@nguniversal/express-engine": "^9.1.0",
     "@nguniversal/module-map-ngfactory-loader": "^8.2.6",
     "aws-serverless-express": "^3.3.8",

@@ -14,8 +14,6 @@ import { Meta } from '@angular/platform-browser';
 })
 export class BlogComponent implements OnInit {
   @ViewChild('blogView') blogView: ElementRef;
-  blogWidth: number;
-
   blog: Entry<any>;
 
   combine = new Map();
@@ -28,6 +26,8 @@ export class BlogComponent implements OnInit {
               private route: ActivatedRoute,
               private disqusService: DisqusService,
               private metaService: Meta) {
+                this.metaService.updateTag({ property: 'og:type', content: 'article' });
+                this.metaService.updateTag({ property: 'og:image', content: 'https://i.ytimg.com/vi/UKeI9bdB6Qg/maxresdefault.jpg' });
               }
 
   ngOnInit() {
@@ -46,8 +46,6 @@ export class BlogComponent implements OnInit {
   }
 
   updateOgTags() {
-    this.metaService.updateTag({ property: 'og:type', content: 'article' });
-    this.metaService.updateTag({ property: 'og:image', content: 'https://i.ytimg.com/vi/UKeI9bdB6Qg/maxresdefault.jpg' });
     this.metaService.addTag({ property: 'og:title', content: this.getTitle(this.blog) });
   }
 
@@ -165,7 +163,7 @@ export class BlogComponent implements OnInit {
   setCommentCount() {
     if (this.blog) {
       return this.disqusService.requestComments().subscribe((body: any) => {
-        for (let item of body.response) {
+        for (const item of body.response) {
           if (item.identifiers.includes(this.getID(this.blog))) {
             this.commentCount = item.posts;
           }
