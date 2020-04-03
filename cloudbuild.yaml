@@ -22,7 +22,4 @@ steps:
   id: DEPLOY_CLOUD_RUN
   waitFor: ['DOCKER_BUILD']
 
-images:
-- gcr.io/$PROJECT_ID/universal
-
 timeout: 1200s
