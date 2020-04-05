@@ -1,11 +1,16 @@
 <div #blogView id="wrapper" *ngIf="blog">
   <div id="title">{{ getTitle(blog) }}</div>
   <div id="date">{{ getDate(blog) }}</div>
+  <div>
+    <a *ngFor="let category of getCategories()" [routerLink]="'/' + category">
+      {{ toHashtag(category) }}
+    </a>
+  </div>
   <a class="disqus-comment-count" href="{{ commentRoute() }}" data-disqus-identifier="getID(blog)">
     Comments
   </a>
 
-  <app-share-bar [title]="getTitle(blog)" [categories]="getCategories(blog)"></app-share-bar>
+  <app-share-bar [title]="getTitle(blog)" [hashtags]="getHashtagsUnicode()"></app-share-bar>
 
   <div *ngFor="let item of getBody(blog); let i = index" [ngClass]="item.nodeType">
     <hr *ngIf="item.nodeType === 'hr'"/>

@@ -12,13 +12,11 @@ const TWITTER_SHARE_URL = 'https://twitter.com/intent/tweet?text=';
 })
 export class ShareBarComponent implements OnInit {
   @Input() title;
-  @Input() categories;
-  hashtags;
+  @Input() hashtags;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.hashtags = this.getHashtags();
   }
 
   twitterShareURL() {
@@ -28,22 +26,5 @@ export class ShareBarComponent implements OnInit {
       path = path.substring(0, index);
     }
     return TWITTER_SHARE_URL + this.title + ' ' + BASE_URL + path + ' ' + this.hashtags;
-  }
-
-  getHashtags() {
-    let hashtags = '';
-    for (const category of this.categories) {
-      hashtags += this.toHashtag(category);
-    }
-    hashtags += '%23CarinaCollective';
-    return hashtags;
-  }
-
-  toHashtag(category) {
-    if (category === 'style-beauty') {
-      return '%23style %23beauty ';
-    } else {
-      return '%23' + category + ' ';
-    }
   }
 }

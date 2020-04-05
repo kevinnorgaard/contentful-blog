@@ -79,6 +79,39 @@ export class BlogComponent implements OnInit {
     return false;
   }
 
+  getHashtags() {
+    let hashtags = '';
+    for (const category of this.getCategories()) {
+      hashtags += this.toHashtag(category);
+    }
+    return hashtags;
+  }
+
+  toHashtag(category) {
+    if (category === 'style-beauty') {
+      return '#style #beauty ';
+    } else {
+      return '#' + category + ' ';
+    }
+  }
+
+  getHashtagsUnicode() {
+    let hashtags = '';
+    for (const category of this.getCategories()) {
+      hashtags += this.toHashtagUnicode(category);
+    }
+    hashtags += '%23CarinaCollective';
+    return hashtags;
+  }
+
+  toHashtagUnicode(category) {
+    if (category === 'style-beauty') {
+      return '%23style %23beauty ';
+    } else {
+      return '%23' + category + ' ';
+    }
+  }
+
   isParagraph(item) {
     return item.nodeType === 'paragraph' && !this.isTag(item);
   }
@@ -108,8 +141,8 @@ export class BlogComponent implements OnInit {
     }
   }
 
-  getCategories(blog) {
-    return this.contentfulService.getCategory(blog);
+  getCategories() {
+    return this.contentfulService.getCategory(this.blog);
   }
 
   getTitle(blog) {

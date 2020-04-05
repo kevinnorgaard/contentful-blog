@@ -115,6 +115,10 @@ export class ContentfulService {
     return blog.fields.title;
   }
 
+  getTagline(blog) {
+    return blog.fields.tagline;
+  }
+
   getDate(blog) {
     if (blog) {
       const date = new Date(blog.fields.published);

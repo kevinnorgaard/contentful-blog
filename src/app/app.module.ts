@@ -34,6 +34,7 @@ import { BlogPreviewComponent } from './blog-preview/blog-preview.component';
 
 import { CONFIG, DisqusService } from './disqus.service';
 import { ShareBarComponent } from './blog/share-bar/share-bar.component';
+import { ArtComponent } from './pages/art/art.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { ShareBarComponent } from './blog/share-bar/share-bar.component';
     BlogComponent,
     ContentfulListComponent,
     BlogPreviewComponent,
-    ShareBarComponent
+    ShareBarComponent,
+    ArtComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

@@ -50,6 +50,12 @@ export class BlogListComponent implements OnInit {
     }
   }
 
+  getTagline(blog) {
+    if (blog) {
+      return this.contentfulService.getTagline(blog);
+    }
+  }
+
   getDate(blog) {
     if (blog) {
       return this.contentfulService.getDate(blog);

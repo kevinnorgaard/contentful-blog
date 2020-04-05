@@ -11,7 +11,8 @@
     <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="close()">Home</a></li>
     <li><a routerLink="style-beauty" routerLinkActive="active" (click)="close()">Style & Beauty</a></li>
     <li><a routerLink="wellness" routerLinkActive="active" (click)="close()">Wellness</a></li>
-    <li><a routerLink="/about" routerLinkActive="active" (click)="close()">About</a></li>
+    <li><a routerLink="art" routerLinkActive="active" (click)="close()">Art</a></li>
+    <li><a routerLink="about" routerLinkActive="active" (click)="close()">About</a></li>
     <li><a (click)="openDialog()" (click)="close()">Subscribe</a></li>
   </ul>
 </div>
@@ -23,6 +24,7 @@
     <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
     <li><a routerLink="style-beauty" routerLinkActive="active">Style & Beauty</a></li>
     <li><a routerLink="wellness" routerLinkActive="active">Wellness</a></li>
+    <li><a routerLink="art" routerLinkActive="active">Art</a></li>
     <li><a routerLink="about" routerLinkActive="active">About</a></li>
     <li><a (click)="openDialog()">Subscribe</a></li>
     <li><app-social [color]="'white'"></app-social></li>

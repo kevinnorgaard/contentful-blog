@@ -20,6 +20,12 @@ export class BlogPreviewComponent implements OnInit {
     }
   }
 
+  getTagline() {
+    if (this.blog) {
+      return this.contentfulService.getTagline(this.blog);
+    }
+  }
+
   gotoBlog() {
     this.contentfulService.gotoBlog(this.blog);
   }
