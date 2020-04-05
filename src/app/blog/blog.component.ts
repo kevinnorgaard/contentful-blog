@@ -38,6 +38,7 @@ export class BlogComponent implements OnInit {
       })
     ).subscribe((entries) => {
         this.blog = entries[0];
+        console.log(this.blog.fields);
         this.updateOgTags();
         this.setCommentCount();
         this.parseTags();
