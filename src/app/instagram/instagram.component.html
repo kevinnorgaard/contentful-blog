@@ -3,6 +3,7 @@
     <div *ngFor="let post of instaPosts; let i = index" class="insta-col col-6 col-md-3">
       <a [href]="post.fields.url" target="_blank" class="img-container">
         <div class="instaImage" [style.backgroundImage]="getImage(post)"></div>
+        <i *ngIf="post.fields.multiple" class="fa fa-clone"></i>
         <div class="overlay">
           <span>{{ getCaption(post) }}</span>
         </div>

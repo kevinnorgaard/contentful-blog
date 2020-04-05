@@ -28,6 +28,14 @@
   margin: 0;
 }
 
+.fa-clone {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 20px;
+  color: white;
+}
+
 .overlay {
   padding: 10px;
   display: flex;
