@@ -44,10 +44,13 @@ export class BlogComponent implements OnInit {
   }
 
   updateOgTags() {
-    this.metaService.updateTag({ property: 'og:type', content: 'article' });
+    this.metaService.updateTag({ property: 'og:type', content: 'blog' });
     this.metaService.updateTag({ property: 'og:image', content: 'https:' + this.blog.fields.image.fields.file.url });
     this.metaService.addTag({ property: 'og:title', content: this.getTitle(this.blog) });
     this.metaService.addTag({ property: 'og:description', content: this.getTagline(this.blog) });
+    this.metaService.addTag({ name: 'twitter:title', content: this.getTitle(this.blog) });
+    this.metaService.addTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.metaService.addTag({ name: 'twitter:', content: this.getTagline(this.blog) });
   }
 
   parseTags() {
