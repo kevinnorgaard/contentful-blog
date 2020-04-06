@@ -38,7 +38,6 @@ export class BlogComponent implements OnInit {
       })
     ).subscribe((entries) => {
         this.blog = entries[0];
-        console.log(this.blog.fields);
         this.updateOgTags();
         this.setCommentCount();
         this.parseTags();
@@ -156,6 +155,12 @@ export class BlogComponent implements OnInit {
 
   getBody(blog) {
     return this.contentfulService.getBodyContent(blog);
+  }
+
+  getBlogImage() {
+    if (this.blog) {
+      return this.contentfulService.getImage(this.blog.fields.image);
+    }
   }
 
   getImage(item) {

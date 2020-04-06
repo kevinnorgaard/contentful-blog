@@ -39,6 +39,11 @@ a {
   margin-bottom: 10px;
 }
 
+#thumbnail {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
 .heading-centered {
   font-family: raleway, sans-serif;
   font-size: 18px;
