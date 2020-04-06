@@ -35,7 +35,7 @@ import { BlogPreviewComponent } from './blog-preview/blog-preview.component';
 import { CONFIG, DisqusService } from './disqus.service';
 import { ShareBarComponent } from './blog/share-bar/share-bar.component';
 import { ArtComponent } from './pages/art/art.component';
-import { BlogsResolve } from './contentful.resolve';
+import { BlogsResolve, BlogResolve } from './contentful.resolve';
 
 @NgModule({
   declarations: [
@@ -79,7 +79,8 @@ import { BlogsResolve } from './contentful.resolve';
     ContentfulService,
     DisqusService,
     Meta,
-    BlogsResolve
+    BlogsResolve,
+    BlogResolve
   ],
   bootstrap: [AppComponent]
 })

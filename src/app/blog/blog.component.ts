@@ -27,14 +27,10 @@ export class BlogComponent implements OnInit {
               }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(
-      params => {
-        this.getBlogById(params.get('id'));
-        this.updateOgTags();
-        this.setCommentCount();
-        this.parseTags();
-      }
-    );
+    this.blog = this.route.snapshot.data.blog[0];
+    this.updateOgTags();
+    this.setCommentCount();
+    this.parseTags();
   }
 
   getBlogById(id) {
@@ -49,8 +45,9 @@ export class BlogComponent implements OnInit {
 
   updateOgTags() {
     this.metaService.updateTag({ property: 'og:type', content: 'article' });
-    this.metaService.updateTag({ property: 'og:image', content: 'https://i.ytimg.com/vi/UKeI9bdB6Qg/maxresdefault.jpg' });
+    this.metaService.updateTag({ property: 'og:image', content: 'https:' + this.blog.fields.image.fields.file.url });
     this.metaService.addTag({ property: 'og:title', content: this.getTitle(this.blog) });
+    this.metaService.addTag({ property: 'og:description', content: this.getTagline(this.blog) });
   }
 
   parseTags() {
@@ -153,6 +150,10 @@ export class BlogComponent implements OnInit {
     return this.contentfulService.getTitle(blog);
   }
 
+  getTagline(blog) {
+      return this.contentfulService.getTagline(blog);
+  }
+
   getDate(blog) {
     return this.contentfulService.getDate(blog);
   }
@@ -174,14 +175,14 @@ export class BlogComponent implements OnInit {
   }
 
   getImageWidth(item, shared = false) {
-    if (this.blogView && item.fields) {
+    if (this.blogView && item.data.target.fields) {
       const width = this.getWidthRatio() * this.getImageDetails(item.data.target).height;
       return (shared ? width / 2 : width) + 'px';
     }
   }
 
   getImageHeight(item, shared = false) {
-    if (this.blogView && item.fields) {
+    if (this.blogView && item.data.target.fields) {
       const height = this.getWidthRatio() * this.getImageDetails(item.data.target).height;
       return (shared ? height / 2 : height) + 'px';
     }

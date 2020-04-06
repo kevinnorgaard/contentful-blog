@@ -5,7 +5,7 @@
     <a *ngFor="let category of getCategories()" [routerLink]="'/' + category">{{ toHashtag(category) }}</a>
   </div>
   <a class="disqus-comment-count" href="{{ commentRoute() }}" data-disqus-identifier="getID(blog)">
-    Comments
+    {{ commentCount }} Comments
   </a>
 
   <app-share-bar [title]="getTitle(blog)" [hashtags]="getHashtagsUnicode()"></app-share-bar>
