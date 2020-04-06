@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ContentfulService } from '../contentful.service';
 import { Entry } from 'contentful';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-blog-list',
@@ -12,13 +13,12 @@ export class BlogListComponent implements OnInit {
   @Input() category: string;
   blogs: Entry<any>[] = [];
 
-  constructor(private contentfulService: ContentfulService) { }
+  constructor(private contentfulService: ContentfulService,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.contentfulService.getBlogs()
-        .then(blogs => {
-          this.filterCategory(blogs.sort(this.contentfulService.sortByPublished));
-        });
+    const blogs = this.route.snapshot.data.blogs;
+    this.filterCategory(blogs.sort(this.contentfulService.sortByPublished));
   }
 
   filterCategory(blogs) {

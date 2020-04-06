@@ -1,4 +1,4 @@
-<div id="wrapper" (click)="gotoBlog()">
+<div *ngIf="blog" id="wrapper" (click)="gotoBlog()">
   <div id="label">New Post</div>
 
   <div id="image" [style.backgroundImage]="getImage()"></div>

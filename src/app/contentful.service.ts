@@ -57,14 +57,16 @@ export class ContentfulService {
   }
 
   getImage(item, urlMode = false) {
-    const id = this.getID(item);
-    if (id && this.imgMap.has(id) && this.imgMap.get(id).requested) {
-      return urlMode ? 'url(' + this.imgMap.get(id).image + ')' : this.imgMap.get(id).image;
-    } else if (item.fields.file.url) {
-      const url = 'https:' + item.fields.file.url;
-      this.imgMap.set(id, {requested: true});
-      this.loadImage(url, id);
-      return urlMode ? 'url(' + this.imgMap.get(id).image + ')' : this.imgMap.get(id).image;
+    if (item.fields) {
+      const id = this.getID(item);
+      if (id && this.imgMap.has(id) && this.imgMap.get(id).requested) {
+        return urlMode ? 'url(' + this.imgMap.get(id).image + ')' : this.imgMap.get(id).image;
+      } else if (item.fields.file.url) {
+        const url = 'https:' + item.fields.file.url;
+        this.imgMap.set(id, {requested: true});
+        this.loadImage(url, id);
+        return urlMode ? 'url(' + this.imgMap.get(id).image + ')' : this.imgMap.get(id).image;
+      }
     }
   }
 
@@ -130,7 +132,9 @@ export class ContentfulService {
   }
 
   getDescription(blog) {
-    return blog.data.target.fields.description;
+    if (blog.data.target.fields) {
+      return blog.data.target.fields.description;
+    }
   }
 
   getBodyContent(blog) {

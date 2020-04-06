@@ -2,8 +2,6 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ContentfulService } from '../contentful.service';
 import { Entry } from 'contentful';
 import { Router, ActivatedRoute } from '@angular/router';
-import { from } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 import { DisqusService } from '../disqus.service';
 import { Meta } from '@angular/platform-browser';
 
@@ -26,18 +24,12 @@ export class BlogComponent implements OnInit {
               private route: ActivatedRoute,
               private disqusService: DisqusService,
               private metaService: Meta) {
-                this.metaService.updateTag({ property: 'og:type', content: 'article' });
-                this.metaService.updateTag({ property: 'og:image', content: 'https://i.ytimg.com/vi/UKeI9bdB6Qg/maxresdefault.jpg' });
               }
 
   ngOnInit() {
-    this.route.paramMap.pipe(
-      switchMap(params => {
-        const selectedId = params.get('id');
-        return from(this.contentfulService.getBlog(selectedId));
-      })
-    ).subscribe((entries) => {
-        this.blog = entries[0];
+    this.route.paramMap.subscribe(
+      params => {
+        this.getBlogById(params.get('id'));
         this.updateOgTags();
         this.setCommentCount();
         this.parseTags();
@@ -45,7 +37,19 @@ export class BlogComponent implements OnInit {
     );
   }
 
+  getBlogById(id) {
+    const blogs = this.route.snapshot.data.blogs;
+    for (const blog of blogs) {
+      if (blog.sys.id === id) {
+        this.blog = blog;
+        return;
+      }
+    }
+  }
+
   updateOgTags() {
+    this.metaService.updateTag({ property: 'og:type', content: 'article' });
+    this.metaService.updateTag({ property: 'og:image', content: 'https://i.ytimg.com/vi/UKeI9bdB6Qg/maxresdefault.jpg' });
     this.metaService.addTag({ property: 'og:title', content: this.getTitle(this.blog) });
   }
 
@@ -164,18 +168,20 @@ export class BlogComponent implements OnInit {
   }
 
   getImage(item) {
-    return this.contentfulService.getImage(item.data.target, true);
+    if (item && item.data.target) {
+      return this.contentfulService.getImage(item.data.target, true);
+    }
   }
 
   getImageWidth(item, shared = false) {
-    if (this.blogView) {
+    if (this.blogView && item.fields) {
       const width = this.getWidthRatio() * this.getImageDetails(item.data.target).height;
       return (shared ? width / 2 : width) + 'px';
     }
   }
 
   getImageHeight(item, shared = false) {
-    if (this.blogView) {
+    if (this.blogView && item.fields) {
       const height = this.getWidthRatio() * this.getImageDetails(item.data.target).height;
       return (shared ? height / 2 : height) + 'px';
     }

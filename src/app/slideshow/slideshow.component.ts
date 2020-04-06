@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Entry } from 'contentful';
 import { ContentfulService } from '../contentful.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-slideshow',
@@ -16,15 +17,14 @@ export class SlideshowComponent implements OnInit {
 
   hover = false;
 
-  constructor(private contentfulService: ContentfulService) { }
+  constructor(private contentfulService: ContentfulService,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.contentfulService.getBlogs()
-      .then(blogPosts => {
-        this.filterPopular(blogPosts.sort(this.contentfulService.sortByPublished));
-        this.initSlides();
-        this.showSlides(this.slideIndex);
-      });
+    const blogPosts = this.route.snapshot.data.blogs;
+    this.filterPopular(blogPosts.sort(this.contentfulService.sortByPublished));
+    this.initSlides();
+    this.showSlides(this.slideIndex);
   }
 
   filterPopular(posts: Entry<any>[]) {
