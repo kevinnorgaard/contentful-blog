@@ -50,7 +50,8 @@ export class BlogComponent implements OnInit {
     this.metaService.addTag({ property: 'og:description', content: this.getTagline(this.blog) });
     this.metaService.addTag({ name: 'twitter:title', content: this.getTitle(this.blog) });
     this.metaService.addTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.metaService.addTag({ name: 'twitter:', content: this.getTagline(this.blog) });
+    this.metaService.addTag({ name: 'twitter:description', content: this.getTagline(this.blog) });
+    this.metaService.addTag({ name: 'twitter:image', content: 'https:' + this.blog.fields.image.fields.file.url });
   }
 
   parseTags() {
