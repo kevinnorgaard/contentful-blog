@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { createClient, Entry } from 'contentful';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 export const CONFIG = {
@@ -24,8 +23,7 @@ export class ContentfulService {
 
   imgMap = new Map();
 
-  constructor(private router: Router,
-              private http: HttpClient) { }
+  constructor(private router: Router) { }
 
   getBlogs(query?: object): Promise<Entry<any>[]> {
     return this.cdaClient.getEntries(Object.assign({
@@ -57,45 +55,8 @@ export class ContentfulService {
   }
 
   getImage(item, urlMode = false) {
-    if (item.fields) {
-      const id = this.getID(item);
-      if (id && this.imgMap.has(id) && this.imgMap.get(id).requested) {
-        return urlMode ? 'url(' + this.imgMap.get(id).image + ')' : this.imgMap.get(id).image;
-      } else if (item.fields.file.url) {
-        const url = 'https:' + item.fields.file.url;
-        this.imgMap.set(id, {requested: true});
-        this.loadImage(url, id);
-        return urlMode ? 'url(' + this.imgMap.get(id).image + ')' : this.imgMap.get(id).image;
-      }
-    }
-  }
-
-  loadImage(url: string, id: string) {
-    this.requestImage(url)
-    .subscribe(
-      (val) => {
-        this.convertBlobToImage(val, id);
-      },
-      response => {
-        console.log('GET in error', response);
-      },
-      () => {
-        console.log('GET observable is now completed.');
-      });
-  }
-
-  requestImage(url: string) {
-    return this.http.get(url, {responseType: 'blob'});
-  }
-
-  convertBlobToImage(blob: any, filename: string) {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => {
-      this.imgMap.set(filename, {requested: true, image: reader.result});
-    }, false);
-    if (blob) {
-      reader.readAsDataURL(blob);
-    }
+    const url = 'https:' + item.fields.file.url;
+    return urlMode ? 'url(' + url + ')' : url;
   }
 
   getID(post: Entry<any>) {

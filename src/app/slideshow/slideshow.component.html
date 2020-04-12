@@ -2,7 +2,7 @@
   <div class="slideshow-container">
     <div id="label">Popular Posts</div>
 
-    <div *ngFor="let item of popularBlogPosts; let i = index" class="mySlides fading" [ngClass]="{'hidden': slideHidden[i]}"
+    <div *ngFor="let item of popularBlogPosts; let i = index" class="mySlides" [ngClass]="{'hidden': slideHidden[i]}"
       (mouseover)="hover = true" (mouseleave)="hover = false" (click)="gotoBlog(item)">
       <div class="image" [style.backgroundImage]="getImage(item)"></div>
       <div class="text" [ngClass]="{'text-focus': hover}">{{ getTitle(item) }}</div>
