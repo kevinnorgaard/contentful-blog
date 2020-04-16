@@ -115,3 +115,9 @@
     margin: 0 auto 51px auto;
   }
 }
+
+@media only screen and (min-width: 900px) {
+  #wrapper {
+    padding-top: 86px;
+  }
+}

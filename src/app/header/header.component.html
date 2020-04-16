@@ -1,6 +1,7 @@
 <div id="mobile">
   <ul id="mobile-header">
     <div id="mobile-header-left">
+      <img id="small-logo" routerLink="" routerLinkActive="active" src="assets/small-logo.png" />
       <app-social></app-social>
       <i class="fa fa-search"></i>
     </div>
@@ -21,13 +22,18 @@
 
 <div id="desktop">
   <ul id="desktop-header">
-    <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
-    <li><a routerLink="style-beauty" routerLinkActive="active">Style & Beauty</a></li>
-    <li><a routerLink="wellness" routerLinkActive="active">Wellness</a></li>
-    <li><a routerLink="art" routerLinkActive="active">Art</a></li>
-    <li><a routerLink="about" routerLinkActive="active">About</a></li>
-    <li><a (click)="openDialog()">Subscribe</a></li>
-    <li><app-social [color]="'white'"></app-social></li>
-    <li><i class="fa fa-search"></i></li>
+    <!-- <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li> -->
+    <div id="desktop-left-side">
+      <li><a routerLink="style-beauty" routerLinkActive="active">Style & Beauty</a></li>
+      <li><a routerLink="wellness" routerLinkActive="active">Wellness</a></li>
+      <li><a routerLink="art" routerLinkActive="active">Art</a></li>
+    </div>
+    <img id="logo" routerLink="" routerLinkActive="active" src="assets/logo.png" />
+    <div id="desktop-right-side">
+      <li><a routerLink="about" routerLinkActive="active">About</a></li>
+      <li><a (click)="openDialog()">Subscribe</a></li>
+      <li><app-social></app-social></li>
+      <li><i class="fa fa-search"></i></li>
+    </div>
   </ul>
 </div>

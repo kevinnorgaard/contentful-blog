@@ -10,7 +10,7 @@
   justify-content: space-between;
   list-style-type: none;
   margin: 0;
-  padding: 33px 24px 26px 24px;
+  padding: 18px;
 }
 
 #mobile-header-left {
@@ -18,8 +18,17 @@
   align-items: center;
 }
 
+#small-logo {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+  outline: none;
+}
+
 .toggler {
   width: 40px;
+  height: 50px;
+  line-height: 50px;
   font-size: 30px;
   text-align: center;
 }
@@ -54,7 +63,7 @@
 #desktop {
   display: none;
   justify-content: center;
-  background-color: black;
+  background-color: rgba(255, 255, 255, 0.85);
   position: fixed;
   top: 0;
   width: 100%;
@@ -62,20 +71,21 @@
 }
 
 #desktop-header {
-  color: white;
-  max-width: 832px;
+  flex: 1;
+  color: black;
+  max-width: 900px;
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   list-style-type: none;
   margin: 15px 0 11px 0;
-  padding: 0 30px;
+  padding: 0 10px;
 }
 
 #desktop-header li a {
   font-size: 13px;
-  color: #BAB8B8;
+  color: black;
   -webkit-transition: color 300ms linear;
   -ms-transition: color 300ms linear;
   -moz-transition: color 300ms linear;
@@ -84,11 +94,33 @@
 }
 
 #desktop-header li a.active {
-  color: white;
+  color: #BAB8B8;
 }
 
 #desktop-header li a:hover {
-  color: white;
+  color: #BAB8B8;
+}
+
+#desktop-left-side {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#desktop-right-side {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#logo {
+  height: 50px;
+  width: auto;
+  justify-self: center;
+  outline: none;
+  cursor: pointer;
 }
 
 li {
@@ -109,7 +141,7 @@ li a {
   margin: 0 0 0 15px;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 900px) {
   #mobile {
     display: none;
   }
