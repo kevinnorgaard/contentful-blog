@@ -1,0 +1,13 @@
+#logo {
+  display: block;
+  margin: 0 auto;
+  max-width: 800px;
+  width: 100%;
+  height: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  #logo {
+    padding: 64px 0 15px 0;
+  }
+}
