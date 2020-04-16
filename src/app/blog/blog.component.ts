@@ -28,6 +28,7 @@ export class BlogComponent implements OnInit {
 
   ngOnInit() {
     this.blog = this.route.snapshot.data.blog[0];
+    console.log(this.blog);
     this.updateOgTags();
     this.setCommentCount();
     this.parseTags();

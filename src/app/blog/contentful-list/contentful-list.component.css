@@ -1,0 +1,16 @@
+a {
+  color: #a89f92;
+  cursor: pointer;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.underline {
+  text-decoration: underline;
+}

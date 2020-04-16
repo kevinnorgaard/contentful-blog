@@ -10,7 +10,12 @@
   <li *ngFor="let item of item.content">
     <span *ngFor="let item of item.content">
       <app-contentful-list [listType]="item.nodeType" [item]="item"></app-contentful-list>
-      <span *ngFor="let item of item.content">{{item.value}}</span>
+      <span *ngFor="let item of item.content">
+        <a *ngIf="item.nodeType === 'hyperlink'" href="{{ item.data.uri }}" target="_blank">
+          <span *ngFor="let item of item.content" [ngClass]="getStyle(item)">{{ item.value }}</span>
+        </a>
+        <span *ngIf="item.nodeType === 'text'" [ngClass]="getStyle(item)">{{ item.value }}</span>
+      </span>
     </span>
   </li>
 </ol>
