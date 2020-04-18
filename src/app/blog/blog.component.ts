@@ -27,15 +27,12 @@ export class BlogComponent implements OnInit {
               }
 
   ngOnInit() {
-    console.log('ngOnInit()');
     this.blog = this.route.snapshot.data.blog[0];
     this.route.params.subscribe(routeParams => {
-      this.contentfulService.getBlog(routeParams.id).then(
-        blog => {
-          this.blog = blog[0];
-          this.parseBlog();
-        }
-      );
+      this.contentfulService.getBlog(routeParams.id).then(blog => {
+        this.blog = blog[0];
+        this.parseBlog();
+      });
     });
     this.parseBlog();
   }
