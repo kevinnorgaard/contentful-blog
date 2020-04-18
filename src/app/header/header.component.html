@@ -3,7 +3,7 @@
     <div id="mobile-header-left">
       <img id="small-logo" routerLink="" routerLinkActive="active" src="assets/small-logo-transparent.png" />
       <app-social></app-social>
-      <i class="fa fa-search"></i>
+      <!-- <i class="fa fa-search"></i> -->
     </div>
     <i class="fa fa-bars toggler" [ngClass]="{'hidden': !hideDropdown}" (click)="onToggle()"></i>
     <i class="fa fa-times toggler" [ngClass]="{'hidden': hideDropdown}" (click)="onToggle()"></i>
@@ -33,7 +33,7 @@
       <li><a routerLink="about" routerLinkActive="active">About</a></li>
       <li><a (click)="openDialog()">Subscribe</a></li>
       <li><app-social></app-social></li>
-      <li><i class="fa fa-search"></i></li>
+      <!-- <li><i class="fa fa-search"></i></li> -->
     </div>
   </ul>
 </div>

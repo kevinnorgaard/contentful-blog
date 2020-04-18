@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ContentfulService } from '../contentful.service';
 import { Entry } from 'contentful';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -27,21 +27,23 @@ export class BlogComponent implements OnInit {
               }
 
   ngOnInit() {
+    console.log('ngOnInit()');
     this.blog = this.route.snapshot.data.blog[0];
-    console.log(this.blog);
+    this.route.params.subscribe(routeParams => {
+      this.contentfulService.getBlog(routeParams.id).then(
+        blog => {
+          this.blog = blog[0];
+          this.parseBlog();
+        }
+      );
+    });
+    this.parseBlog();
+  }
+
+  parseBlog() {
     this.updateOgTags();
     this.setCommentCount();
     this.parseTags();
-  }
-
-  getBlogById(id) {
-    const blogs = this.route.snapshot.data.blogs;
-    for (const blog of blogs) {
-      if (blog.sys.id === id) {
-        this.blog = blog;
-        return;
-      }
-    }
   }
 
   updateOgTags() {

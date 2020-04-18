@@ -9,7 +9,7 @@ export class BlogsResolve implements Resolve<Entry<any>[]> {
   constructor(private contentfulService: ContentfulService) {}
 
   resolve(route: ActivatedRouteSnapshot): Promise<Entry<any>[]> {
-    return this.contentfulService.getBlogs(null);
+    return this.contentfulService.getBlogs();
   }
 }
 

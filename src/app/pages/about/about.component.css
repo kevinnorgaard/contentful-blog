@@ -28,8 +28,6 @@
   top: 50%;
   transform: translate(0, -50%);
   position: absolute;
-  /* background-color: rgba(245, 244, 244, 1); */
-  background-color: rgba(168,159,146, .2);
   max-width: 1282px;
   width: 100%;
   height: 517px;
@@ -89,5 +87,11 @@
   }
   #about-text {
     font-size: 20px;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  #wrapper {
+    margin: 97px auto 40px auto;
   }
 }

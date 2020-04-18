@@ -25,10 +25,10 @@ export class ContentfulService {
 
   constructor(private router: Router) { }
 
-  getBlogs(query?: object): Promise<Entry<any>[]> {
+  getBlogs(): Promise<Entry<any>[]> {
     return this.cdaClient.getEntries(Object.assign({
       content_type: CONFIG.contentTypeIds.blog
-    }, query))
+    }, null))
     .then(res => res.items);
   }
 
