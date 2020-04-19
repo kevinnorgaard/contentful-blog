@@ -60,7 +60,7 @@ label {
   margin: 0 0 15px 0;
   font-family: raleway, sans-serif;
   font-style: italic;
-  color: #605E5E;
+  color: var(--grey);
   text-align: center;
 }
 

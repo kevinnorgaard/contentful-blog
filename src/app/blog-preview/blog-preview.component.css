@@ -11,13 +11,14 @@
 }
 
 #label {
+  letter-spacing: 1px;
   width: 236px;
   height: 38px;
   position: absolute;
   top: 12px;
   right: 12px;
   background-color: black;
-  color: #DBDBDB;
+  color: white;
   font-size: 18px;
   z-index: 1;
   display: flex;
@@ -39,7 +40,7 @@
 #detail-container {
   width: 100%;
   text-align: center;
-  background-color: rgba(168,159,146, .15);
+  background-color: var(--lightbeige);
   padding: 30px 20px;
 }
 

@@ -13,7 +13,6 @@ import { ContentfulService } from './contentful.service';
 import { BlogListComponent } from './blog-list/blog-list.component';
 import { HeaderComponent } from './header/header.component';
 import { AboutComponent } from './pages/about/about.component';
-import { TitleComponent } from './title/title.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SlideshowComponent } from './slideshow/slideshow.component';
 import { NewsletterComponent } from './newsletter/newsletter.component';
@@ -44,7 +43,6 @@ import { ScrollTopService } from './scroll-top.service';
     BlogListComponent,
     HeaderComponent,
     AboutComponent,
-    TitleComponent,
     HomeComponent,
     SlideshowComponent,
     NewsletterComponent,

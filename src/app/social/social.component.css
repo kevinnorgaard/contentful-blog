@@ -8,10 +8,19 @@
   font-size: 22px;
   text-align: center;
   vertical-align: middle;
+  -webkit-transition: color 300ms linear;
+  -ms-transition: color 300ms linear;
+  -moz-transition: color 300ms linear;
+  -o-transition: color 300ms linear;
+  transition: color 300ms linear;
 }
 
 .white {
   color: white;
+}
+
+a:hover .fa {
+  color: var(--lightgrey);
 }
 
 

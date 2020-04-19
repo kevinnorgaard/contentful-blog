@@ -11,7 +11,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgba(168,159,146, .2);
+  background-color: var(--lightbeige);
   padding: 0 10px;
 }
 
@@ -26,7 +26,7 @@ label {
 .text {
   padding: 0 10px;
   font-family: 'Montserrat', sans-serif;
-  color: #605E5E;
+  color: var(--grey);
   margin-bottom: 10px;
   text-align: center;
 }

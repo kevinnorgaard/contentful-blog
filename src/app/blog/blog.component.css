@@ -31,7 +31,7 @@ a {
 
 #date {
   text-transform: uppercase;
-  color: grey;
+  color: var(--grey);
 }
 
 .disqus-comment-count {
@@ -68,7 +68,7 @@ a {
   height: 100%;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: black;
   color: rgba(255, 255, 255, 0);
   -webkit-transition: background-color 300ms linear, color 300ms linear;
   -ms-transition: background-color 300ms linear, color 300ms linear;
@@ -78,7 +78,7 @@ a {
 }
 
 .asset-block-overlay:hover {
-  color: rgba(255, 255, 255, 1);
+  color: white;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -87,7 +87,7 @@ a {
 }
 
 .asset-block-overlay:hover {
-  color: rgba(255, 255, 255, 1);
+  color: white;
 }
 
 hr {

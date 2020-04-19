@@ -94,6 +94,7 @@
 }
 
 #desktop-header li a.active {
+  cursor: default;
   color: var(--lightgrey);
 }
 
