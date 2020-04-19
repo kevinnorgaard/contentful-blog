@@ -5,6 +5,7 @@ import { ContentfulService } from 'src/app/contentful.service';
 import { empty, from } from 'rxjs';
 import { Entry } from 'contentful';
 import { Meta } from '@angular/platform-browser';
+import { ScrollTopService } from 'src/app/scroll-top.service';
 
 @Component({
   selector: 'app-wellness',
@@ -14,9 +15,11 @@ import { Meta } from '@angular/platform-browser';
 export class WellnessComponent implements OnInit {
   category = 'wellness';
 
-  constructor(private metaService: Meta) { }
+  constructor(private metaService: Meta,
+    private scrollTopService: ScrollTopService) { }
 
   ngOnInit() {
+    this.scrollTopService.setScrollTop();
     this.updateOgTags();
   }
 

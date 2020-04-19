@@ -36,6 +36,7 @@ import { CONFIG, DisqusService } from './disqus.service';
 import { ShareBarComponent } from './blog/share-bar/share-bar.component';
 import { ArtComponent } from './pages/art/art.component';
 import { BlogsResolve, BlogResolve } from './contentful.resolve';
+import { ScrollTopService } from './scroll-top.service';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { BlogsResolve, BlogResolve } from './contentful.resolve';
     DisqusService,
     Meta,
     BlogsResolve,
-    BlogResolve
+    BlogResolve,
+    ScrollTopService
   ],
   bootstrap: [AppComponent]
 })

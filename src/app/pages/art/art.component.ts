@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ScrollTopService } from 'src/app/scroll-top.service';
 
 @Component({
   selector: 'app-art',
@@ -8,8 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class ArtComponent implements OnInit {
   category = 'art';
 
-  constructor() {
+  constructor(private scrollTopService: ScrollTopService) {
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.scrollTopService.setScrollTop();
+  }
 }

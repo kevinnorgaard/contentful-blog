@@ -1,3 +1,7 @@
+a {
+  color: var(--beige);
+}
+
 #img-container {
   position: relative;
   display: flex;

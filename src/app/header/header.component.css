@@ -94,11 +94,11 @@
 }
 
 #desktop-header li a.active {
-  color: #BAB8B8;
+  color: var(--lightgrey);
 }
 
 #desktop-header li a:hover {
-  color: #BAB8B8;
+  color: var(--lightgrey);
 }
 
 #desktop-left-side {

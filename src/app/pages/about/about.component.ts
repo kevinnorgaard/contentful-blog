@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'src/app/dialog.service';
+import { ScrollTopService } from 'src/app/scroll-top.service';
 
 @Component({
   selector: 'app-about',
@@ -8,9 +9,11 @@ import { DialogService } from 'src/app/dialog.service';
 })
 export class AboutComponent implements OnInit {
 
-  constructor(private dialogService: DialogService) { }
+  constructor(private dialogService: DialogService,
+    private scrollTopService: ScrollTopService) { }
 
   ngOnInit() {
+    this.scrollTopService.setScrollTop();
   }
 
   openDialog() {

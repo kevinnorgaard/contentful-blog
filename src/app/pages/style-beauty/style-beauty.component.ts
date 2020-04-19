@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
+import { ScrollTopService } from 'src/app/scroll-top.service';
 
 @Component({
   selector: 'app-style-beauty',
@@ -9,10 +10,12 @@ import { Meta } from '@angular/platform-browser';
 export class StyleBeautyComponent implements OnInit {
   category = 'style-beauty';
 
-  constructor(private metaService: Meta) {
+  constructor(private metaService: Meta,
+    private scrollTopService: ScrollTopService) {
   }
 
   ngOnInit() {
+    this.scrollTopService.setScrollTop();
     this.updateOgTags();
   }
 

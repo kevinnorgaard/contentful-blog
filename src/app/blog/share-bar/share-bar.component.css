@@ -23,8 +23,8 @@ a {
 }
 
 button:hover {
-  background-color: #a89f92;
-  border: 1px solid #a89f92;
+  background-color: var(--beige);
+  border: 1px solid var(--beige);
 }
 
 button:hover .fa {
