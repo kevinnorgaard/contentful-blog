@@ -7,10 +7,9 @@
 }
 
 #title {
-  flex: 1;
   white-space: nowrap;
-  font-size: 4.7vw;
-  letter-spacing: 3px;
+  font-size: 5.2vw;
+  letter-spacing: .15em;
   margin: 0 2vw;
   text-align: center;
 }
@@ -23,7 +22,6 @@
 @media only screen and (min-width: 900px) {
   #title {
     font-size: 30px;
-    white-space: nowrap;
     margin: 0 20px;
   }
 }
