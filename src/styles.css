@@ -1,3 +1,10 @@
+:root {
+  --beige: #a89f92;
+  --lightbeige: rgba(168,159,146, .15);
+  --grey: grey;
+  --lightgrey: #BAB8B8;
+}
+
 * {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
