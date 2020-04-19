@@ -7,13 +7,23 @@
 }
 
 #title {
-  font-size: 30px;
-  letter-spacing: 3px;
+  flex: 1;
   white-space: nowrap;
-  margin: 0 20px;
+  font-size: 4.7vw;
+  letter-spacing: 3px;
+  margin: 0 2vw;
+  text-align: center;
 }
 
 .horizontal-line {
   border-top: 1px solid black;
   width: 100%;
+}
+
+@media only screen and (min-width: 900px) {
+  #title {
+    font-size: 30px;
+    white-space: nowrap;
+    margin: 0 20px;
+  }
 }
