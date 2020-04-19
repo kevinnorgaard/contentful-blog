@@ -14,3 +14,11 @@ a {
 .underline {
   text-decoration: underline;
 }
+
+.asset-block {
+  margin: 0 auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 15px;
+}

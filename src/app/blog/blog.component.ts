@@ -28,6 +28,7 @@ export class BlogComponent implements OnInit {
 
   ngOnInit() {
     this.blog = this.route.snapshot.data.blog[0];
+    console.log(this.blog.fields.body.content);
     this.route.params.subscribe(routeParams => {
       this.contentfulService.getBlog(routeParams.id).then(blog => {
         this.blog = blog[0];
@@ -180,20 +181,20 @@ export class BlogComponent implements OnInit {
 
   getImageWidth(item, shared = false) {
     if (this.blogView && item.data.target.fields) {
-      const width = this.getWidthRatio() * this.getImageDetails(item.data.target).height;
+      const width = this.getWidth();
       return (shared ? width / 2 : width) + 'px';
     }
   }
 
   getImageHeight(item, shared = false) {
     if (this.blogView && item.data.target.fields) {
-      const height = this.getWidthRatio() * this.getImageDetails(item.data.target).height;
+      const height = this.getWidth() / this.getImageDetails(item.data.target).width * this.getImageDetails(item.data.target).height;
       return (shared ? height / 2 : height) + 'px';
     }
   }
 
-  getWidthRatio() {
-    return (this.blogView.nativeElement.offsetWidth - 20) / 800;
+  getWidth() {
+    return this.blogView.nativeElement.offsetWidth - 20;
   }
 
   getImageDetails(item) {
@@ -211,14 +212,12 @@ export class BlogComponent implements OnInit {
   }
 
   setCommentCount() {
-    if (this.blog) {
-      return this.disqusService.requestComments().subscribe((body: any) => {
-        for (const item of body.response) {
-          if (item.identifiers.includes(this.getID(this.blog))) {
-            this.commentCount = item.posts;
-          }
+    return this.disqusService.requestComments().subscribe((body: any) => {
+      for (const item of body.response) {
+        if (item.identifiers.includes(this.getID(this.blog))) {
+          this.commentCount = item.posts;
         }
-      });
-    }
+      }
+    });
   }
 }

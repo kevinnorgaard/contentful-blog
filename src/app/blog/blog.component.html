@@ -4,7 +4,7 @@
   <div>
     <a *ngFor="let category of getCategories()" [routerLink]="'/' + category">{{ toHashtag(category) }}</a>
   </div>
-  <a class="disqus-comment-count" href="{{ commentRoute() }}" data-disqus-identifier="getID(blog)">
+  <a class="disqus-comment-count" href="{{ commentRoute() }}">
     {{ commentCount }} Comments
   </a>
 
@@ -15,8 +15,16 @@
   <div *ngFor="let item of getBody(blog); let i = index" [ngClass]="item.nodeType">
     <hr *ngIf="item.nodeType === 'hr'"/>
 
-    <div *ngIf="item.nodeType === 'heading-6'" class="heading-centered">
+    <div *ngIf="item.nodeType.startsWith('heading-')" [ngClass]="item.nodeType">
       {{ item.content[0].value }}
+    </div>
+
+    <div *ngIf="item.nodeType === 'embedded-asset-block' && !combine.has(i) && !skip.includes(i)" [style.width]="getImageWidth(item)"
+         [style.height]="getImageHeight(item)" class="asset-block" [style.backgroundImage]="getImage(item)">
+      <a *ngIf="getPinUrl(item)" class="asset-block-overlay pin"
+         href="{{ getPinUrl(item) }}" target="_blank">
+        <i class="fa fa-pinterest"></i><span>pin it</span>
+      </a>
     </div>
 
     <div *ngIf="item.nodeType === 'embedded-asset-block' && combine.has(i)" class="row">
@@ -29,14 +37,6 @@
           </a>
         </div>
       </div>
-    </div>
-
-    <div *ngIf="item.nodeType === 'embedded-asset-block' && !combine.has(i) && !skip.includes(i)" [style.width]="getImageWidth(item)"
-         [style.height]="getImageHeight(item)" class="asset-block" [style.backgroundImage]="getImage(item)">
-      <a *ngIf="getPinUrl(item)" class="asset-block-overlay pin"
-         href="{{ getPinUrl(item) }}" target="_blank">
-        <i class="fa fa-pinterest"></i><span>pin it</span>
-      </a>
     </div>
 
     <span *ngIf="item.nodeType === 'embedded-entry-block'" [ngClass]="getStyle(item)"
