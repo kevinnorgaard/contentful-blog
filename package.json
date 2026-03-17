@@ -15,7 +15,8 @@
     "build:ssr": "ng build --prod && ng run contentful-blog:server:production",
     "build:all": "npm run build:prod && npm run build:ssr",
     "serve:ssr": "node dist/contentful-blog-server/main.js",
-    "ssr": "npm run build:ssr && npm run serve:ssr"
+    "ssr": "npm run build:ssr && npm run serve:ssr",
+    "deploy": "ng build --configuration=production && rsync -avz --delete -e 'ssh -p 21098' dist/contentful-blog/ ainecmrx@67.223.118.183:~/carinacollective.kevinnorgaard.com/"
   },
   "private": true,
   "dependencies": {
