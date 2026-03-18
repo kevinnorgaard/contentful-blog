@@ -8,7 +8,11 @@
       "Bash(nvm use:*)",
       "Bash(npx @angular/cli@10 update @angular/core@10 @angular/cli@10 --allow-dirty --force)",
       "Bash(./node_modules/.bin/ng update:*)",
-      "Bash(./node_modules/.bin/ng build:*)"
+      "Bash(./node_modules/.bin/ng build:*)",
+      "Bash(rm -rf node_modules)",
+      "Bash(npm install:*)",
+      "Bash(npm view:*)",
+      "Bash(node -e \"const m = require\\(''./node_modules/ngx-disqus/fesm2022/ngx-disqus.mjs''\\); console.log\\(Object.keys\\(m\\)\\)\")"
     ]
   }
 }
