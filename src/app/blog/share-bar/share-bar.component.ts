@@ -6,9 +6,10 @@ const BASE_URL = 'https://carinacollective.com';
 const TWITTER_SHARE_URL = 'https://twitter.com/intent/tweet?text=';
 
 @Component({
-  selector: 'app-share-bar',
-  templateUrl: './share-bar.component.html',
-  styleUrls: ['./share-bar.component.css']
+    selector: 'app-share-bar',
+    templateUrl: './share-bar.component.html',
+    styleUrls: ['./share-bar.component.css'],
+    standalone: false
 })
 export class ShareBarComponent {
   @Input() title;

@@ -2,9 +2,10 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { ContentfulService } from 'src/app/contentful.service';
 
 @Component({
-  selector: 'app-contentful-list',
-  templateUrl: './contentful-list.component.html',
-  styleUrls: ['./contentful-list.component.css']
+    selector: 'app-contentful-list',
+    templateUrl: './contentful-list.component.html',
+    styleUrls: ['./contentful-list.component.css'],
+    standalone: false
 })
 export class ContentfulListComponent implements OnInit {
   @Input() listType;

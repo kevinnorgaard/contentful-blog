@@ -3,9 +3,10 @@ import { ContentfulService } from '../contentful.service';
 import { Entry } from 'contentful';
 
 @Component({
-  selector: 'app-blog-preview',
-  templateUrl: './blog-preview.component.html',
-  styleUrls: ['./blog-preview.component.css']
+    selector: 'app-blog-preview',
+    templateUrl: './blog-preview.component.html',
+    styleUrls: ['./blog-preview.component.css'],
+    standalone: false
 })
 export class BlogPreviewComponent implements OnInit {
   @Input() blog: Entry<any>;

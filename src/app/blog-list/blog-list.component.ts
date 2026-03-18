@@ -4,9 +4,10 @@ import { Entry } from 'contentful';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-blog-list',
-  templateUrl: './blog-list.component.html',
-  styleUrls: ['./blog-list.component.css']
+    selector: 'app-blog-list',
+    templateUrl: './blog-list.component.html',
+    styleUrls: ['./blog-list.component.css'],
+    standalone: false
 })
 export class BlogListComponent implements OnInit {
   @Input() showPreview: boolean;

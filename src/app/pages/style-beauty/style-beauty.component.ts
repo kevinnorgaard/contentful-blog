@@ -3,9 +3,10 @@ import { Meta } from '@angular/platform-browser';
 import { ScrollTopService } from 'src/app/scroll-top.service';
 
 @Component({
-  selector: 'app-style-beauty',
-  templateUrl: './style-beauty.component.html',
-  styleUrls: ['./style-beauty.component.css']
+    selector: 'app-style-beauty',
+    templateUrl: './style-beauty.component.html',
+    styleUrls: ['./style-beauty.component.css'],
+    standalone: false
 })
 export class StyleBeautyComponent implements OnInit {
   category = 'style-beauty';

@@ -6,9 +6,10 @@ import { DisqusService } from '../disqus.service';
 import { Meta } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-blog',
-  templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.css']
+    selector: 'app-blog',
+    templateUrl: './blog.component.html',
+    styleUrls: ['./blog.component.css'],
+    standalone: false
 })
 export class BlogComponent implements OnInit {
   @ViewChild('blogView') blogView: ElementRef;

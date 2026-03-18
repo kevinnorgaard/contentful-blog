@@ -4,9 +4,10 @@ import { ContentfulService } from '../contentful.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-slideshow',
-  templateUrl: './slideshow.component.html',
-  styleUrls: ['./slideshow.component.css']
+    selector: 'app-slideshow',
+    templateUrl: './slideshow.component.html',
+    styleUrls: ['./slideshow.component.css'],
+    standalone: false
 })
 export class SlideshowComponent implements OnInit {
   popularBlogPosts: Entry<any>[] = [];

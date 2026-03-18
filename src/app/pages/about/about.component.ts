@@ -3,9 +3,10 @@ import { DialogService } from 'src/app/dialog.service';
 import { ScrollTopService } from 'src/app/scroll-top.service';
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.css']
+    selector: 'app-about',
+    templateUrl: './about.component.html',
+    styleUrls: ['./about.component.css'],
+    standalone: false
 })
 export class AboutComponent implements OnInit {
 

@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { DialogService } from '../dialog.service';
 
 @Component({
-  selector: 'app-subscribe-dialog',
-  templateUrl: './subscribe-dialog.component.html',
-  styleUrls: ['./subscribe-dialog.component.css']
+    selector: 'app-subscribe-dialog',
+    templateUrl: './subscribe-dialog.component.html',
+    styleUrls: ['./subscribe-dialog.component.css'],
+    standalone: false
 })
 export class SubscribeDialogComponent implements OnInit {
 

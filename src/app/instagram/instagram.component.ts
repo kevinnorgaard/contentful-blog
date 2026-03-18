@@ -5,9 +5,10 @@ import { map, take } from 'rxjs/operators';
 import { Subscriber } from 'rxjs';
 
 @Component({
-  selector: 'app-instagram',
-  templateUrl: './instagram.component.html',
-  styleUrls: ['./instagram.component.css']
+    selector: 'app-instagram',
+    templateUrl: './instagram.component.html',
+    styleUrls: ['./instagram.component.css'],
+    standalone: false
 })
 export class InstagramComponent implements OnInit {
   instaPosts: Entry<any>[] = [];

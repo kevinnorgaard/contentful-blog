@@ -8,9 +8,10 @@ import { Meta } from '@angular/platform-browser';
 import { ScrollTopService } from 'src/app/scroll-top.service';
 
 @Component({
-  selector: 'app-wellness',
-  templateUrl: './wellness.component.html',
-  styleUrls: ['./wellness.component.css']
+    selector: 'app-wellness',
+    templateUrl: './wellness.component.html',
+    styleUrls: ['./wellness.component.css'],
+    standalone: false
 })
 export class WellnessComponent implements OnInit {
   category = 'wellness';
