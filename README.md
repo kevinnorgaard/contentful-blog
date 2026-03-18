@@ -1,6 +1,6 @@
 # Contentful Blog
 
-An Angular blog application powered by [Contentful](https://www.contentful.com/) as a headless CMS.
+A blog and lifestyle content platform built with Angular and server-side rendering, powered by the Contentful headless CMS. The platform serves multi-category content across fashion, beauty, wellness, and art — featuring dynamic rich-text rendering, an Instagram feed, social sharing, and a Disqus-powered comments system.
 
 ## Prerequisites
 
@@ -11,10 +11,8 @@ An Angular blog application powered by [Contentful](https://www.contentful.com/)
 
 ```bash
 nvm use 20
-npm install --force
+npm install
 ```
-
-> `--force` is needed due to a peer dependency mismatch in `ngx-disqus`.
 
 ## Development
 
@@ -24,13 +22,25 @@ npm run serve
 
 Serves the app at [http://localhost:4200/](http://localhost:4200/) with live reload.
 
+## SSR Development
+
+```bash
+npm run dev:ssr
+```
+
+Serves the app with server-side rendering enabled.
+
 ## Production Build
 
 ```bash
-npm run build -- --configuration=production
+npm run build:ssr
 ```
 
-Output is written to `dist/contentful-blog/`.
+Output is written to `dist/contentful-blog/`. Start the SSR server with:
+
+```bash
+npm run serve:ssr
+```
 
 ## Deploy
 
@@ -42,8 +52,9 @@ Builds for production and syncs to the remote server via rsync.
 
 ## Tech Stack
 
-- **Angular** 19
+- **Angular** 19 with **@angular/ssr** (server-side rendering)
 - **TypeScript** 5.8
 - **Contentful** SDK for CMS content
 - **ngx-disqus** for comments
 - **RxJS** for reactive programming
+- **Express** for the SSR server

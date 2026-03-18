@@ -1,4 +1,4 @@
-import { BrowserModule, Meta } from '@angular/platform-browser';
+import { BrowserModule, Meta, provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
@@ -74,6 +74,7 @@ import { ScrollTopService } from './scroll-top.service';
         BlogResolve,
         ScrollTopService,
         { provide: DISQUS_SHORTNAME, useValue: CONFIG.shortName },
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withInterceptorsFromDi()),
+        provideClientHydration(withEventReplay())
     ] })
 export class AppModule { }
