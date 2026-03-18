@@ -1,6 +1,6 @@
 import { BrowserModule, Meta } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,8 +37,7 @@ import { ArtComponent } from './pages/art/art.component';
 import { BlogsResolve, BlogResolve } from './contentful.resolve';
 import { ScrollTopService } from './scroll-top.service';
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         AppComponent,
         BlogListComponent,
         HeaderComponent,
@@ -63,23 +62,18 @@ import { ScrollTopService } from './scroll-top.service';
         ShareBarComponent,
         ArtComponent
     ],
-    imports: [
-        BrowserModule,
+    exports: [],
+    bootstrap: [AppComponent], imports: [BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        HttpClientModule,
-        DisqusModule
-    ],
-    exports: [],
-    providers: [
+        DisqusModule], providers: [
         ContentfulService,
         DisqusService,
         Meta,
         BlogsResolve,
         BlogResolve,
         ScrollTopService,
-        { provide: DISQUS_SHORTNAME, useValue: CONFIG.shortName }
-    ],
-    bootstrap: [AppComponent]
-})
+        { provide: DISQUS_SHORTNAME, useValue: CONFIG.shortName },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }
