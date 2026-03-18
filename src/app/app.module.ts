@@ -38,50 +38,47 @@ import { BlogsResolve, BlogResolve } from './contentful.resolve';
 import { ScrollTopService } from './scroll-top.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    BlogListComponent,
-    HeaderComponent,
-    AboutComponent,
-    HomeComponent,
-    SlideshowComponent,
-    NewsletterComponent,
-    FooterComponent,
-    SocialComponent,
-    IntroComponent,
-    HeadingComponent,
-    CategoryListComponent,
-    CategoryComponent,
-    StyleBeautyComponent,
-    WellnessComponent,
-    InstagramComponent,
-    SubscribeDialogComponent,
-    NewsletterInputComponent,
-    BlogComponent,
-    ContentfulListComponent,
-    BlogPreviewComponent,
-    ShareBarComponent,
-    ArtComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    DisqusModule.forRoot(CONFIG.shortName)
-  ],
-  exports: [],
-  entryComponents: [
-    SubscribeDialogComponent
-  ],
-  providers: [
-    ContentfulService,
-    DisqusService,
-    Meta,
-    BlogsResolve,
-    BlogResolve,
-    ScrollTopService
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        BlogListComponent,
+        HeaderComponent,
+        AboutComponent,
+        HomeComponent,
+        SlideshowComponent,
+        NewsletterComponent,
+        FooterComponent,
+        SocialComponent,
+        IntroComponent,
+        HeadingComponent,
+        CategoryListComponent,
+        CategoryComponent,
+        StyleBeautyComponent,
+        WellnessComponent,
+        InstagramComponent,
+        SubscribeDialogComponent,
+        NewsletterInputComponent,
+        BlogComponent,
+        ContentfulListComponent,
+        BlogPreviewComponent,
+        ShareBarComponent,
+        ArtComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        DisqusModule.forRoot(CONFIG.shortName)
+    ],
+    exports: [],
+    providers: [
+        ContentfulService,
+        DisqusService,
+        Meta,
+        BlogsResolve,
+        BlogResolve,
+        ScrollTopService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
