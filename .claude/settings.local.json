@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh api:*)",
+      "Bash(npm --version)",
+      "Bash(nvm ls:*)",
+      "Bash(source ~/.nvm/nvm.sh)",
+      "Bash(nvm use:*)",
+      "Bash(npx @angular/cli@10 update @angular/core@10 @angular/cli@10 --allow-dirty --force)",
+      "Bash(./node_modules/.bin/ng update:*)",
+      "Bash(./node_modules/.bin/ng build:*)"
+    ]
+  }
+}
