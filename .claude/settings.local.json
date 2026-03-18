@@ -12,7 +12,10 @@
       "Bash(rm -rf node_modules)",
       "Bash(npm install:*)",
       "Bash(npm view:*)",
-      "Bash(node -e \"const m = require\\(''./node_modules/ngx-disqus/fesm2022/ngx-disqus.mjs''\\); console.log\\(Object.keys\\(m\\)\\)\")"
+      "Bash(node -e \"const m = require\\(''./node_modules/ngx-disqus/fesm2022/ngx-disqus.mjs''\\); console.log\\(Object.keys\\(m\\)\\)\")",
+      "Bash(npx @angular/cli@19 update @angular/cli@19 --name use-application-builder --allow-dirty --force)",
+      "Bash(rm tslint.json src/tslint.json)",
+      "Bash(rm -rf e2e)"
     ]
   }
 }
