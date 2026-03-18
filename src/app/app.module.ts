@@ -64,7 +64,7 @@ import { ScrollTopService } from './scroll-top.service';
     ArtComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
