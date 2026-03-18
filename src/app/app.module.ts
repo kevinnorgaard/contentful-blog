@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DisqusModule } from 'ngx-disqus';
+import { DisqusModule, DISQUS_SHORTNAME } from 'ngx-disqus';
 
 import { ContentfulService } from './contentful.service';
 import { BlogListComponent } from './blog-list/blog-list.component';
@@ -68,7 +68,7 @@ import { ScrollTopService } from './scroll-top.service';
         AppRoutingModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        DisqusModule.forRoot(CONFIG.shortName)
+        DisqusModule
     ],
     exports: [],
     providers: [
@@ -77,7 +77,8 @@ import { ScrollTopService } from './scroll-top.service';
         Meta,
         BlogsResolve,
         BlogResolve,
-        ScrollTopService
+        ScrollTopService,
+        { provide: DISQUS_SHORTNAME, useValue: CONFIG.shortName }
     ],
     bootstrap: [AppComponent]
 })
