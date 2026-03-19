@@ -4,13 +4,13 @@ A blog and lifestyle content platform built with Angular and server-side renderi
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) v20+ (managed via [nvm](https://github.com/nvm-sh/nvm))
+- [Node.js](https://nodejs.org/) v22+ (managed via [nvm](https://github.com/nvm-sh/nvm))
 - npm v10+
 
 ## Getting Started
 
 ```bash
-nvm use 20
+nvm use 22
 npm install
 ```
 
@@ -52,7 +52,7 @@ Builds for production and syncs to the remote server via rsync.
 
 ## Tech Stack
 
-- **Angular** 19 with **@angular/ssr** (server-side rendering)
+- **Angular** 21 with **@angular/ssr** (server-side rendering)
 - **TypeScript** 5.8
 - **Contentful** SDK for CMS content
 - **ngx-disqus** for comments
