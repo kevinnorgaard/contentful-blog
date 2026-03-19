@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { createClient, Entry } from 'contentful';
+import { createClient } from 'contentful';
 import { Router } from '@angular/router';
+
+export type ContentfulEntry = { sys: any; fields: any; metadata?: any; [key: string]: any };
 
 export const CONFIG = {
   space: 'ndctiuutex2v',
@@ -25,32 +27,32 @@ export class ContentfulService {
 
   constructor(private router: Router) { }
 
-  getBlogs(): Promise<Entry<any>[]> {
+  getBlogs(): Promise<ContentfulEntry[]> {
     return this.cdaClient.getEntries(Object.assign({
       content_type: CONFIG.contentTypeIds.blog
     }, null))
-    .then(res => res.items);
+    .then(res => res.items as ContentfulEntry[]);
   }
 
-  getBlog(blogID: string): Promise<Entry<any>[]> {
+  getBlog(blogID: string): Promise<ContentfulEntry[]> {
     return this.cdaClient.getEntries(Object.assign({
       content_type: CONFIG.contentTypeIds.blog
     }, {'sys.id': blogID}))
-    .then(res => res.items);
+    .then(res => res.items as ContentfulEntry[]);
   }
 
-  getInstaPosts(query?: object): Promise<Entry<any>[]> {
+  getInstaPosts(query?: object): Promise<ContentfulEntry[]> {
     return this.cdaClient.getEntries(Object.assign({
       content_type: CONFIG.contentTypeIds.insta
     }, query))
-    .then(res => res.items);
+    .then(res => res.items as ContentfulEntry[]);
   }
 
-  sortByPublished(a: Entry<any>, b: Entry<any>) {
+  sortByPublished(a: ContentfulEntry, b: ContentfulEntry) {
     return b.fields.published.localeCompare(a.fields.published);
   }
 
-  sortByDatetime(a: Entry<any>, b: Entry<any>) {
+  sortByDatetime(a: ContentfulEntry, b: ContentfulEntry) {
     return b.fields.datetime.localeCompare(a.fields.datetime);
   }
 
@@ -59,15 +61,15 @@ export class ContentfulService {
     return urlMode ? 'url(' + url + ')' : url;
   }
 
-  getID(post: Entry<any>) {
+  getID(post: ContentfulEntry) {
     return post.sys.id;
   }
 
-  getCategory(post: Entry<any>) {
+  getCategory(post: ContentfulEntry) {
     return post.fields.category;
   }
 
-  gotoBlog(blog: Entry<any>) {
+  gotoBlog(blog: ContentfulEntry) {
     const id = this.getID(blog);
     console.log('Going to', id);
     this.router.navigate(['/blog', id]);

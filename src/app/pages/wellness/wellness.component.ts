@@ -1,9 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { ContentfulService } from 'src/app/contentful.service';
-import { empty, from } from 'rxjs';
-import { Entry } from 'contentful';
 import { Meta } from '@angular/platform-browser';
 import { ScrollTopService } from 'src/app/scroll-top.service';
 

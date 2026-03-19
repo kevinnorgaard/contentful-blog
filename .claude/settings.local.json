@@ -18,7 +18,9 @@
       "Bash(rm -rf e2e)",
       "Bash(gtimeout 15 ./node_modules/.bin/ng serve)",
       "Bash(npm run:*)",
-      "Bash(./node_modules/.bin/ng add:*)"
+      "Bash(./node_modules/.bin/ng add:*)",
+      "Bash(node -e \":*)",
+      "Bash(node -e \"const c = require\\(''contentful''\\); console.log\\(c.Entry ? ''has Entry'' : ''no Entry export''\\)\")"
     ]
   }
 }

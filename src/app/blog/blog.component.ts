@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { ContentfulService } from '../contentful.service';
-import { Entry } from 'contentful';
+import { ContentfulService, ContentfulEntry } from '../contentful.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DisqusService } from '../disqus.service';
 import { Meta } from '@angular/platform-browser';
@@ -13,7 +12,7 @@ import { Meta } from '@angular/platform-browser';
 })
 export class BlogComponent implements OnInit {
   @ViewChild('blogView') blogView: ElementRef;
-  blog: Entry<any>;
+  blog: ContentfulEntry;
 
   combine = new Map();
   skip = [];

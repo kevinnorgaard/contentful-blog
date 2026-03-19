@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ContentfulService } from '../contentful.service';
-import { Entry } from 'contentful';
-import { map, take } from 'rxjs/operators';
-import { Subscriber } from 'rxjs';
+import { ContentfulService, ContentfulEntry } from '../contentful.service';
 
 @Component({
     selector: 'app-instagram',
@@ -11,7 +8,7 @@ import { Subscriber } from 'rxjs';
     standalone: false
 })
 export class InstagramComponent implements OnInit {
-  instaPosts: Entry<any>[] = [];
+  instaPosts: ContentfulEntry[] = [];
 
   constructor(private contentfulService: ContentfulService) { }
 

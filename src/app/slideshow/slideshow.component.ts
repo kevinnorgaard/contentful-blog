@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Entry } from 'contentful';
-import { ContentfulService } from '../contentful.service';
+import { ContentfulService, ContentfulEntry } from '../contentful.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -10,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
     standalone: false
 })
 export class SlideshowComponent implements OnInit {
-  popularBlogPosts: Entry<any>[] = [];
+  popularBlogPosts: ContentfulEntry[] = [];
   images = [];
 
   slideHidden: boolean[] = [];
@@ -28,7 +27,7 @@ export class SlideshowComponent implements OnInit {
     this.showSlides(this.slideIndex);
   }
 
-  filterPopular(posts: Entry<any>[]) {
+  filterPopular(posts: ContentfulEntry[]) {
     for (const post of posts) {
       if (post.fields.popular) {
         this.popularBlogPosts.push(post);

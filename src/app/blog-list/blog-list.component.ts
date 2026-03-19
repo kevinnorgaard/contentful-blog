@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ContentfulService } from '../contentful.service';
-import { Entry } from 'contentful';
+import { ContentfulService, ContentfulEntry } from '../contentful.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class BlogListComponent implements OnInit {
   @Input() showPreview: boolean;
   @Input() category: string;
-  blogs: Entry<any>[] = [];
+  blogs: ContentfulEntry[] = [];
 
   constructor(private contentfulService: ContentfulService,
               private route: ActivatedRoute) { }
@@ -41,7 +40,7 @@ export class BlogListComponent implements OnInit {
     return this.contentfulService.getImage(this.blogs[i].fields.image, true);
   }
 
-  gotoBlog(blog: Entry<any>) {
+  gotoBlog(blog: ContentfulEntry) {
     this.contentfulService.gotoBlog(blog);
   }
 

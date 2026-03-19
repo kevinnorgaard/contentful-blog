@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ContentfulService } from '../contentful.service';
-import { Entry } from 'contentful';
+import { ContentfulService, ContentfulEntry } from '../contentful.service';
 
 @Component({
     selector: 'app-blog-preview',
@@ -9,7 +8,7 @@ import { Entry } from 'contentful';
     standalone: false
 })
 export class BlogPreviewComponent implements OnInit {
-  @Input() blog: Entry<any>;
+  @Input() blog: ContentfulEntry;
 
   constructor(private contentfulService: ContentfulService) { }
 

@@ -5,8 +5,6 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { DisqusModule, DISQUS_SHORTNAME } from 'ngx-disqus';
 
 import { ContentfulService } from './contentful.service';
@@ -65,7 +63,6 @@ import { ScrollTopService } from './scroll-top.service';
     exports: [],
     bootstrap: [AppComponent], imports: [BrowserModule,
         AppRoutingModule,
-        BrowserAnimationsModule,
         DisqusModule], providers: [
         ContentfulService,
         DisqusService,
