@@ -1,74 +1,108 @@
-<div #blogView id="wrapper" *ngIf="blog">
-  <div id="title">{{ getTitle(blog) }}</div>
-  <div id="date">{{ getDate(blog) }}</div>
-  <div>
-    <a *ngFor="let category of getCategories()" [routerLink]="'/' + category">{{ toHashtag(category) }}</a>
-  </div>
-  <a class="disqus-comment-count" href="{{ commentRoute() }}">
-    {{ commentCount }} Comments
-  </a>
-
-  <app-share-bar [title]="getTitle(blog)" [hashtags]="getHashtagsUnicode()"></app-share-bar>
-
-  <img id="thumbnail" [src]="getBlogImage()" />
-
-  <div *ngFor="let item of getBody(blog); let i = index" [ngClass]="item.nodeType">
-    <hr *ngIf="item.nodeType === 'hr'"/>
-
-    <div *ngIf="item.nodeType.startsWith('heading-')" [ngClass]="item.nodeType">
-      {{ item.content[0].value }}
+@if (blog) {
+  <div #blogView id="wrapper">
+    <div id="title">{{ getTitle(blog) }}</div>
+    <div id="date">{{ getDate(blog) }}</div>
+    <div>
+      @for (category of getCategories(); track category) {
+        <a [routerLink]="'/' + category">{{ toHashtag(category) }}</a>
+      }
     </div>
-
-    <div *ngIf="item.nodeType === 'embedded-asset-block' && !combine.has(i) && !skip.includes(i)" [style.width]="getImageWidth(item)"
-         [style.height]="getImageHeight(item)" class="asset-block" [style.backgroundImage]="getImage(item)">
-      <a *ngIf="getPinUrl(item)" class="asset-block-overlay pin"
-         href="{{ getPinUrl(item) }}" target="_blank">
-        <i class="fa fa-pinterest"></i><span>pin it</span>
-      </a>
-    </div>
-
-    <div *ngIf="item.nodeType === 'embedded-asset-block' && combine.has(i)" class="row">
-      <div *ngFor="let j of combine.get(i)" class="col-6">
-        <div [style.width]="getImageWidth(getBody(blog)[j], true)"
-          [style.height]="getImageHeight(getBody(blog)[j], true)" class="asset-block" [style.backgroundImage]="getImage(getBody(blog)[j])">
-          <a *ngIf="getPinUrl(getBody(blog)[j])" class="asset-block-overlay pin"
-             href="{{ getPinUrl(getBody(blog)[j]) }}" target="_blank">
-            <i class="fa fa-pinterest"></i><span>pin it</span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <span *ngIf="item.nodeType === 'embedded-entry-block'" [ngClass]="getStyle(item)"
+    <a class="disqus-comment-count" href="{{ commentRoute() }}">
+      {{ commentCount }} Comments
+    </a>
+    <app-share-bar [title]="getTitle(blog)" [hashtags]="getHashtagsUnicode()"></app-share-bar>
+    <img id="thumbnail" [src]="getBlogImage()" />
+    @for (item of getBody(blog); track item; let i = $index) {
+      <div [ngClass]="item.nodeType">
+        @if (item.nodeType === 'hr') {
+          <hr/>
+        }
+        @if (item.nodeType.startsWith('heading-')) {
+          <div [ngClass]="item.nodeType">
+            {{ item.content[0].value }}
+          </div>
+        }
+        @if (item.nodeType === 'embedded-asset-block' && !combine.has(i) && !skip.includes(i)) {
+          <div [style.width]="getImageWidth(item)"
+            [style.height]="getImageHeight(item)" class="asset-block" [style.backgroundImage]="getImage(item)">
+            @if (getPinUrl(item)) {
+              <a class="asset-block-overlay pin"
+                href="{{ getPinUrl(item) }}" target="_blank">
+                <i class="fa fa-pinterest"></i><span>pin it</span>
+              </a>
+            }
+          </div>
+        }
+        @if (item.nodeType === 'embedded-asset-block' && combine.has(i)) {
+          <div class="row">
+            @for (j of combine.get(i); track j) {
+              <div class="col-6">
+                <div [style.width]="getImageWidth(getBody(blog)[j], true)"
+                  [style.height]="getImageHeight(getBody(blog)[j], true)" class="asset-block" [style.backgroundImage]="getImage(getBody(blog)[j])">
+                  @if (getPinUrl(getBody(blog)[j])) {
+                    <a class="asset-block-overlay pin"
+                      href="{{ getPinUrl(getBody(blog)[j]) }}" target="_blank">
+                      <i class="fa fa-pinterest"></i><span>pin it</span>
+                    </a>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        }
+        @if (item.nodeType === 'embedded-entry-block') {
+          <span [ngClass]="getStyle(item)"
           (click)="gotoBlog(item)">{{ item.value }}</span>
-
-    <div *ngIf="item.nodeType === 'blockquote'">
-      <div *ngFor="let item of item.content">
-        <span *ngFor="let item of item.content">
-          <span *ngIf="item.nodeType === 'embedded-entry-inline'" class="embedded-entry">{{ getTitle(item) }}</span>
-          <span *ngIf="item.nodeType === 'text'" [ngClass]="getStyle(item)">{{ item.value }}</span>
-        </span>
+        }
+        @if (item.nodeType === 'blockquote') {
+          <div>
+            @for (item of item.content; track item) {
+              <div>
+                @for (item of item.content; track item) {
+                  <span>
+                    @if (item.nodeType === 'embedded-entry-inline') {
+                      <span class="embedded-entry">{{ getTitle(item) }}</span>
+                    }
+                    @if (item.nodeType === 'text') {
+                      <span [ngClass]="getStyle(item)">{{ item.value }}</span>
+                    }
+                  </span>
+                }
+              </div>
+            }
+          </div>
+        }
+        @if (isContentfulList(item)) {
+          <app-contentful-list [listType]="item.nodeType" [item]="item"></app-contentful-list>
+        }
+        @if (isParagraph(item)) {
+          <div>
+            @for (item of item.content; track item) {
+              <span>
+                @if (item.nodeType === 'hyperlink') {
+                  <a href="{{ item.data.uri }}" target="_blank">
+                    @for (item of item.content; track item) {
+                      <span [ngClass]="getStyle(item)">{{ item.value }}</span>
+                    }
+                  </a>
+                }
+                @if (item.nodeType === 'embedded-entry-inline') {
+                  <span class="embedded-entry"
+                    (click)="gotoBlog(item.data.target)">{{ getTitle(item.data.target) }}
+                    <span class="embedded-icon">&#10095;</span>
+                  </span>
+                }
+                @if (item.nodeType === 'text') {
+                  <span [ngClass]="getStyle(item)">{{ item.value }}</span>
+                }
+              </span>
+            }
+          </div>
+        }
       </div>
-    </div>
-
-    <app-contentful-list *ngIf="isContentfulList(item)" [listType]="item.nodeType" [item]="item"></app-contentful-list>
-
-    <div *ngIf="isParagraph(item)">
-      <span *ngFor="let item of item.content">
-        <a *ngIf="item.nodeType === 'hyperlink'" href="{{ item.data.uri }}" target="_blank">
-          <span *ngFor="let item of item.content" [ngClass]="getStyle(item)">{{ item.value }}</span>
-        </a>
-        <span *ngIf="item.nodeType === 'embedded-entry-inline'" class="embedded-entry"
-              (click)="gotoBlog(item.data.target)">{{ getTitle(item.data.target) }}
-          <span class="embedded-icon">&#10095;</span>
-        </span>
-        <span *ngIf="item.nodeType === 'text'" [ngClass]="getStyle(item)">{{ item.value }}</span>
-      </span>
-    </div>
-
+    }
+    <disqus [identifier]="getID(blog)"></disqus>
   </div>
-
-  <disqus [identifier]="getID(blog)"></disqus>
-</div>
+}
 
 <app-blog-list></app-blog-list>

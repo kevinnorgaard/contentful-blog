@@ -2,21 +2,25 @@
   <div class="slideshow-container">
     <div id="label">Popular Posts</div>
 
-    <div *ngFor="let item of popularBlogPosts; let i = index" class="mySlides" [ngClass]="{'hidden': slideHidden[i]}"
-      (mouseover)="hover = true" (mouseleave)="hover = false" (click)="gotoBlog(item)">
-      <div class="image" [style.backgroundImage]="getImage(item)"></div>
-      <div class="text" [ngClass]="{'text-focus': hover}">{{ getTitle(item) }}</div>
-    </div>
+    @for (item of popularBlogPosts; track item; let i = $index) {
+      <div class="mySlides" [ngClass]="{'hidden': slideHidden[i]}"
+        (mouseover)="hover = true" (mouseleave)="hover = false" (click)="gotoBlog(item)">
+        <div class="image" [style.backgroundImage]="getImage(item)"></div>
+        <div class="text" [ngClass]="{'text-focus': hover}">{{ getTitle(item) }}</div>
+      </div>
+    }
 
     <a class="prev" (click)="plusSlides(-1)"
-      (mouseover)="hover = true" (mouseleave)="hover = false">&#10094;</a>
+    (mouseover)="hover = true" (mouseleave)="hover = false">&#10094;</a>
     <a class="next" (click)="plusSlides(1)"
-      (mouseover)="hover = true" (mouseleave)="hover = false">&#10095;</a>
+    (mouseover)="hover = true" (mouseleave)="hover = false">&#10095;</a>
   </div>
   <br>
 
-  <div class="dots">
-    <span *ngFor="let blog of slideHidden; let i = index" class="dot"
-      [ngClass]="{'active': !slideHidden[i]}" (click)="currentSlide(i)"></span>
+    <div class="dots">
+      @for (blog of slideHidden; track blog; let i = $index) {
+        <span class="dot"
+        [ngClass]="{'active': !slideHidden[i]}" (click)="currentSlide(i)"></span>
+      }
+    </div>
   </div>
-</div>

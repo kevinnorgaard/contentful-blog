@@ -1,11 +1,11 @@
-<div *ngIf="blog" id="wrapper" (click)="gotoBlog()">
-  <div id="label">New Post</div>
-
-  <div id="image" [style.backgroundImage]="getImage()"></div>
-
-  <div id="detail-container">
-    <div id="title">{{ getTitle() }}</div>
-    <div id="date">{{ getDate() }}</div>
-    <div id="description">{{ getTagline() }}</div>
+@if (blog) {
+  <div id="wrapper" (click)="gotoBlog()">
+    <div id="label">New Post</div>
+    <div id="image" [style.backgroundImage]="getImage()"></div>
+    <div id="detail-container">
+      <div id="title">{{ getTitle() }}</div>
+      <div id="date">{{ getDate() }}</div>
+      <div id="description">{{ getTagline() }}</div>
+    </div>
   </div>
-</div>
+}
