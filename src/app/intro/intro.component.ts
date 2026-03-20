@@ -1,19 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-intro',
     templateUrl: './intro.component.html',
-    styleUrls: ['./intro.component.css'],
-    standalone: false
+    styleUrl: './intro.component.css',
+    imports: [RouterLink]
 })
-export class IntroComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  onNav() {
-    // window.scrollTo(0, 0);
-  }
-}
+export class IntroComponent {}

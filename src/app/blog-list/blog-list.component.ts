@@ -1,20 +1,21 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ContentfulService, ContentfulEntry } from '../contentful.service';
+import { Component, OnInit, Input, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ContentfulService, ContentfulEntry } from '../contentful.service';
+import { BlogPreviewComponent } from '../blog-preview/blog-preview.component';
 
 @Component({
     selector: 'app-blog-list',
     templateUrl: './blog-list.component.html',
-    styleUrls: ['./blog-list.component.css'],
-    standalone: false
+    styleUrl: './blog-list.component.css',
+    imports: [BlogPreviewComponent]
 })
 export class BlogListComponent implements OnInit {
   @Input() showPreview: boolean;
   @Input() category: string;
   blogs: ContentfulEntry[] = [];
 
-  constructor(private contentfulService: ContentfulService,
-              private route: ActivatedRoute) { }
+  private contentfulService = inject(ContentfulService);
+  private route = inject(ActivatedRoute);
 
   ngOnInit() {
     const blogs = this.route.snapshot.data.blogs;

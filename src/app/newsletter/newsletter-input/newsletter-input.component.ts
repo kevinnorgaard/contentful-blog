@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-newsletter-input',
     templateUrl: './newsletter-input.component.html',
-    styleUrls: ['./newsletter-input.component.css'],
-    standalone: false
+    styleUrl: './newsletter-input.component.css'
 })
-export class NewsletterInputComponent implements OnInit {
+export class NewsletterInputComponent {
   response;
-
-  constructor() { }
-
-  ngOnInit() {}
 }

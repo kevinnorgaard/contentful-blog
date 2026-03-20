@@ -1,22 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ContentfulService, ContentfulEntry } from '../contentful.service';
 
 @Component({
     selector: 'app-instagram',
     templateUrl: './instagram.component.html',
-    styleUrls: ['./instagram.component.css'],
-    standalone: false
+    styleUrl: './instagram.component.css'
 })
 export class InstagramComponent implements OnInit {
   instaPosts: ContentfulEntry[] = [];
 
-  constructor(private contentfulService: ContentfulService) { }
+  private contentfulService = inject(ContentfulService);
 
   ngOnInit() {
     this.contentfulService.getInstaPosts()
       .then(instaPosts => {
         this.instaPosts = instaPosts.sort(this.contentfulService.sortByDatetime);
-        console.log(this.instaPosts[0]);
       });
   }
 

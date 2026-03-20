@@ -1,26 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { NgStyle } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-category',
     templateUrl: './category.component.html',
-    styleUrls: ['./category.component.css'],
-    standalone: false
+    styleUrl: './category.component.css',
+    imports: [NgStyle, RouterLink]
 })
-export class CategoryComponent implements OnInit {
+export class CategoryComponent {
   @Input() category: string;
   @Input() route: string;
   @Input() img: string;
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
   getBackground() {
     return "url('" + this.img + "')";
   }
-
-  // onTab() {
-  //   window.scrollTo(0, 0);
-  // }
 }

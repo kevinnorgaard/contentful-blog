@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { createClient } from 'contentful';
 import { Router } from '@angular/router';
 
@@ -25,7 +25,7 @@ export class ContentfulService {
 
   imgMap = new Map();
 
-  constructor(private router: Router) { }
+  private router = inject(Router);
 
   getBlogs(): Promise<ContentfulEntry[]> {
     return this.cdaClient.getEntries(Object.assign({

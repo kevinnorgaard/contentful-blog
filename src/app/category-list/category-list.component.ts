@@ -1,16 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { CategoryComponent } from './category/category.component';
 
 @Component({
     selector: 'app-category-list',
     templateUrl: './category-list.component.html',
-    styleUrls: ['./category-list.component.css'],
-    standalone: false
+    styleUrl: './category-list.component.css',
+    imports: [CategoryComponent]
 })
-export class CategoryListComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
+export class CategoryListComponent {}

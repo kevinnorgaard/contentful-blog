@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { ScrollTopService } from 'src/app/scroll-top.service';
+import { BlogListComponent } from 'src/app/blog-list/blog-list.component';
 
 @Component({
     selector: 'app-wellness',
     templateUrl: './wellness.component.html',
-    styleUrls: ['./wellness.component.css'],
-    standalone: false
+    styleUrl: './wellness.component.css',
+    imports: [BlogListComponent]
 })
 export class WellnessComponent implements OnInit {
   category = 'wellness';
 
-  constructor(private metaService: Meta,
-    private scrollTopService: ScrollTopService) { }
+  private metaService = inject(Meta);
+  private scrollTopService = inject(ScrollTopService);
 
   ngOnInit() {
     this.scrollTopService.setScrollTop();

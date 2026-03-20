@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { DialogService } from '../dialog.service';
+import { NewsletterInputComponent } from '../newsletter/newsletter-input/newsletter-input.component';
+import { SocialComponent } from '../social/social.component';
 
 @Component({
     selector: 'app-subscribe-dialog',
     templateUrl: './subscribe-dialog.component.html',
-    styleUrls: ['./subscribe-dialog.component.css'],
-    standalone: false
+    styleUrl: './subscribe-dialog.component.css',
+    imports: [NgClass, NewsletterInputComponent, SocialComponent]
 })
-export class SubscribeDialogComponent implements OnInit {
-
-  constructor(private dialogService: DialogService) { }
+export class SubscribeDialogComponent {
+  private dialogService = inject(DialogService);
 
   isOpen() {
     return this.dialogService.isOpen();
@@ -18,8 +20,4 @@ export class SubscribeDialogComponent implements OnInit {
   close() {
     return this.dialogService.close();
   }
-
-  ngOnInit() {
-  }
-
 }

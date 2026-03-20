@@ -6,8 +6,6 @@ import { Injectable } from '@angular/core';
 export class DialogService {
   opened = false;
 
-  constructor() { }
-
   isOpen() {
     return this.opened;
   }

@@ -1,18 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { ContentfulService, ContentfulEntry } from '../contentful.service';
 
 @Component({
     selector: 'app-blog-preview',
     templateUrl: './blog-preview.component.html',
-    styleUrls: ['./blog-preview.component.css'],
-    standalone: false
+    styleUrl: './blog-preview.component.css'
 })
-export class BlogPreviewComponent implements OnInit {
+export class BlogPreviewComponent {
   @Input() blog: ContentfulEntry;
 
-  constructor(private contentfulService: ContentfulService) { }
-
-  ngOnInit() {}
+  private contentfulService = inject(ContentfulService);
 
   getTitle() {
     if (this.blog) {

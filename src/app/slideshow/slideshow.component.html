@@ -2,7 +2,7 @@
   <div class="slideshow-container">
     <div id="label">Popular Posts</div>
 
-    @for (item of popularBlogPosts; track item; let i = $index) {
+    @for (item of popularBlogPosts; track $index; let i = $index) {
       <div class="mySlides" [ngClass]="{'hidden': slideHidden[i]}"
         (mouseover)="hover = true" (mouseleave)="hover = false" (click)="gotoBlog(item)">
         <div class="image" [style.backgroundImage]="getImage(item)"></div>
@@ -18,7 +18,7 @@
   <br>
 
     <div class="dots">
-      @for (blog of slideHidden; track blog; let i = $index) {
+      @for (blog of slideHidden; track $index; let i = $index) {
         <span class="dot"
         [ngClass]="{'active': !slideHidden[i]}" (click)="currentSlide(i)"></span>
       }

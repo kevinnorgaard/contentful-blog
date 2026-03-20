@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 export const CONFIG = {
@@ -14,7 +14,7 @@ const COMMENTS_URL = BASE_URL + 'forums/listThreads.json?forum=' + CONFIG.shortN
   providedIn: 'root'
 })
 export class DisqusService {
-  constructor(private http: HttpClient) { }
+  private http = inject(HttpClient);
 
   requestComments() {
     return this.http.get(COMMENTS_URL, {responseType: 'json'});

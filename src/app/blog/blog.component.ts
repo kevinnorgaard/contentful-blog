@@ -1,14 +1,19 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, inject } from '@angular/core';
 import { ContentfulService, ContentfulEntry } from '../contentful.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { DisqusService } from '../disqus.service';
 import { Meta } from '@angular/platform-browser';
+import { NgClass } from '@angular/common';
+import { DisqusModule } from 'ngx-disqus';
+import { ShareBarComponent } from './share-bar/share-bar.component';
+import { ContentfulListComponent } from './contentful-list/contentful-list.component';
+import { BlogListComponent } from '../blog-list/blog-list.component';
 
 @Component({
     selector: 'app-blog',
     templateUrl: './blog.component.html',
-    styleUrls: ['./blog.component.css'],
-    standalone: false
+    styleUrl: './blog.component.css',
+    imports: [NgClass, RouterLink, DisqusModule, ShareBarComponent, ContentfulListComponent, BlogListComponent]
 })
 export class BlogComponent implements OnInit {
   @ViewChild('blogView') blogView: ElementRef;
@@ -19,12 +24,11 @@ export class BlogComponent implements OnInit {
 
   commentCount: number;
 
-  constructor(private contentfulService: ContentfulService,
-              private router: Router,
-              private route: ActivatedRoute,
-              private disqusService: DisqusService,
-              private metaService: Meta) {
-              }
+  private contentfulService = inject(ContentfulService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private disqusService = inject(DisqusService);
+  private metaService = inject(Meta);
 
   ngOnInit() {
     this.blog = this.route.snapshot.data.blog[0];

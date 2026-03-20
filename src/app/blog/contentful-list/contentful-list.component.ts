@@ -1,21 +1,19 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { ContentfulService } from 'src/app/contentful.service';
+import { Component, Input, ViewChild, ElementRef, inject } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { ContentfulService } from '../../contentful.service';
 
 @Component({
     selector: 'app-contentful-list',
     templateUrl: './contentful-list.component.html',
-    styleUrls: ['./contentful-list.component.css'],
-    standalone: false
+    styleUrl: './contentful-list.component.css',
+    imports: [NgClass]
 })
-export class ContentfulListComponent implements OnInit {
+export class ContentfulListComponent {
   @Input() listType;
   @Input() item;
   @ViewChild('blogView') blogView: ElementRef;
 
-  constructor(private contentfulService: ContentfulService) { }
-
-  ngOnInit() {
-  }
+  private contentfulService = inject(ContentfulService);
 
   getStyle(item) {
     if (!item.marks) {

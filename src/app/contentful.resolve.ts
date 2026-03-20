@@ -1,22 +1,12 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { inject } from '@angular/core';
+import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
 import { ContentfulService, ContentfulEntry } from './contentful.service';
 
-@Injectable()
-export class BlogsResolve  {
-  constructor(private contentfulService: ContentfulService) {}
+export const blogsResolve: ResolveFn<ContentfulEntry[]> = () => {
+  return inject(ContentfulService).getBlogs();
+};
 
-  resolve(route: ActivatedRouteSnapshot): Promise<ContentfulEntry[]> {
-    return this.contentfulService.getBlogs();
-  }
-}
-
-@Injectable()
-export class BlogResolve  {
-  constructor(private contentfulService: ContentfulService) {}
-
-  resolve(route: ActivatedRouteSnapshot): Promise<ContentfulEntry[]> {
-    const id = route.params.id;
-    return this.contentfulService.getBlog(id);
-  }
-}
+export const blogResolve: ResolveFn<ContentfulEntry[]> = (route: ActivatedRouteSnapshot) => {
+  const id = route.params['id'];
+  return inject(ContentfulService).getBlog(id);
+};

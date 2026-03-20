@@ -12,7 +12,7 @@
     </a>
     <app-share-bar [title]="getTitle(blog)" [hashtags]="getHashtagsUnicode()"></app-share-bar>
     <img id="thumbnail" [src]="getBlogImage()" />
-    @for (item of getBody(blog); track item; let i = $index) {
+    @for (item of getBody(blog); track $index; let i = $index) {
       <div [ngClass]="item.nodeType">
         @if (item.nodeType === 'hr') {
           <hr/>
@@ -56,9 +56,9 @@
         }
         @if (item.nodeType === 'blockquote') {
           <div>
-            @for (item of item.content; track item) {
+            @for (item of item.content; track $index) {
               <div>
-                @for (item of item.content; track item) {
+                @for (item of item.content; track $index) {
                   <span>
                     @if (item.nodeType === 'embedded-entry-inline') {
                       <span class="embedded-entry">{{ getTitle(item) }}</span>
@@ -77,11 +77,11 @@
         }
         @if (isParagraph(item)) {
           <div>
-            @for (item of item.content; track item) {
+            @for (item of item.content; track $index) {
               <span>
                 @if (item.nodeType === 'hyperlink') {
                   <a href="{{ item.data.uri }}" target="_blank">
-                    @for (item of item.content; track item) {
+                    @for (item of item.content; track $index) {
                       <span [ngClass]="getStyle(item)">{{ item.value }}</span>
                     }
                   </a>

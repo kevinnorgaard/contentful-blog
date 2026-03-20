@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { DialogService } from '../dialog.service';
+import { SocialComponent } from '../social/social.component';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.css'],
-    standalone: false
+    styleUrl: './header.component.css',
+    imports: [NgClass, RouterLink, RouterLinkActive, SocialComponent]
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   hideDropdown = true;
 
-  constructor(private dialogService: DialogService) { }
-
-  ngOnInit() { }
+  private dialogService = inject(DialogService);
 
   onToggle() {
     this.hideDropdown = !this.hideDropdown;

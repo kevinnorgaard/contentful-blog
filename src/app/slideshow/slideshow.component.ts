@@ -1,24 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { ContentfulService, ContentfulEntry } from '../contentful.service';
+import { Component, OnInit, inject } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { ContentfulService, ContentfulEntry } from '../contentful.service';
 
 @Component({
     selector: 'app-slideshow',
     templateUrl: './slideshow.component.html',
-    styleUrls: ['./slideshow.component.css'],
-    standalone: false
+    styleUrl: './slideshow.component.css',
+    imports: [NgClass]
 })
 export class SlideshowComponent implements OnInit {
   popularBlogPosts: ContentfulEntry[] = [];
   images = [];
-
   slideHidden: boolean[] = [];
   slideIndex = 0;
-
   hover = false;
 
-  constructor(private contentfulService: ContentfulService,
-              private route: ActivatedRoute) { }
+  private contentfulService = inject(ContentfulService);
+  private route = inject(ActivatedRoute);
 
   ngOnInit() {
     const blogPosts = this.route.snapshot.data.blogs;

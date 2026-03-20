@@ -1,4 +1,4 @@
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { Injectable, inject, PLATFORM_ID } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -6,9 +6,8 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root'
 })
 export class ScrollTopService {
-
-  constructor(@Inject(PLATFORM_ID) private platformId: Object,
-  private router: Router) { }
+  private platformId = inject(PLATFORM_ID);
+  private router = inject(Router);
 
   setScrollTop() {
     if (isPlatformBrowser(this.platformId)) {

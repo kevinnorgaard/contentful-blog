@@ -1,18 +1,18 @@
 <div>
   @if (listType === 'unordered-list') {
     <ul>
-      @for (item of item.content; track item) {
+      @for (item of item.content; track $index) {
         <li #blogView>
-          @for (item of item.content; track item) {
+          @for (item of item.content; track $index) {
             <span>
               <app-contentful-list [listType]="item.nodeType" [item]="item"></app-contentful-list>
               @if (item.nodeType === 'paragraph') {
                 <div>
-                  @for (item of item.content; track item) {
+                  @for (item of item.content; track $index) {
                     <span>
                       @if (item.nodeType === 'hyperlink') {
                         <a href="{{ item.data.uri }}" target="_blank">
-                          @for (item of item.content; track item) {
+                          @for (item of item.content; track $index) {
                             <span [ngClass]="getStyle(item)">{{ item.value }}</span>
                           }
                         </a>
@@ -44,18 +44,18 @@
 
   @if (listType === 'ordered-list') {
     <ol>
-      @for (item of item.content; track item) {
+      @for (item of item.content; track $index) {
         <li #blogView>
-          @for (item of item.content; track item) {
+          @for (item of item.content; track $index) {
             <span>
               <app-contentful-list [listType]="item.nodeType" [item]="item"></app-contentful-list>
               @if (item.nodeType === 'paragraph') {
                 <div>
-                  @for (item of item.content; track item) {
+                  @for (item of item.content; track $index) {
                     <span>
                       @if (item.nodeType === 'hyperlink') {
                         <a href="{{ item.data.uri }}" target="_blank">
-                          @for (item of item.content; track item) {
+                          @for (item of item.content; track $index) {
                             <span [ngClass]="getStyle(item)">{{ item.value }}</span>
                           }
                         </a>
