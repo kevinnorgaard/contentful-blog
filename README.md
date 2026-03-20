@@ -17,7 +17,7 @@ npm install
 ## Development
 
 ```bash
-npm run serve
+npm start
 ```
 
 Serves the app at [http://localhost:4200/](http://localhost:4200/) with live reload.
