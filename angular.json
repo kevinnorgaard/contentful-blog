@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "contentful-blog": {
+    "blog": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/contentful-blog",
+            "outputPath": "dist/blog",
             "outputMode": "server",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -53,14 +53,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "contentful-blog:build"
+            "buildTarget": "blog:build"
           },
           "configurations": {
             "production": {
-              "buildTarget": "contentful-blog:build:production"
+              "buildTarget": "blog:build:production"
             },
             "development": {
-              "buildTarget": "contentful-blog:build:development"
+              "buildTarget": "blog:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -68,7 +68,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "contentful-blog:build"
+            "buildTarget": "blog:build"
           }
         }
       }

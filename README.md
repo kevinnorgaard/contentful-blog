@@ -1,4 +1,4 @@
-# Carina Collective -- Blog
+# Carina Collective - Blog
 
 Blog and lifestyle platform for [blog.kevinnorgaard.com](https://blog.kevinnorgaard.com). Built with Angular 21, Express SSR, and Contentful CMS. Features multi-category content (fashion, beauty, wellness, art), Disqus comments, and newsletter subscriptions.
 

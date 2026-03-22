@@ -19,4 +19,4 @@ ENV PORT=8080
 ENV NG_ALLOWED_HOSTS="*.run.app,blog.kevinnorgaard.com,localhost"
 EXPOSE 8080
 
-CMD ["node", "dist/contentful-blog/server/server.mjs"]
+CMD ["node", "dist/blog/server/server.mjs"]

@@ -1,5 +1,5 @@
 {
-  "name": "contentful-blog",
+  "name": "blog",
   "version": "0.0.0",
   "contributors": [
     "Kevin Norgaard <kevinnorg@gmail.com>"
@@ -9,7 +9,7 @@
     "start": "ng serve",
     "build": "ng build",
     "deploy": "gcloud builds submit",
-    "serve:ssr": "node dist/contentful-blog/server/server.mjs"
+    "serve:ssr": "node dist/blog/server/server.mjs"
   },
   "private": true,
   "dependencies": {
