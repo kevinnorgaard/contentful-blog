@@ -22,12 +22,12 @@ export class WellnessComponent implements OnInit {
 
   updateOgTags() {
     this.metaService.updateTag({ property: 'og:type', content: 'website' });
-    this.metaService.updateTag({ property: 'og:image', content: 'https://carinacollective.kevinnorgaard.com/assets/thumbnail.png' });
+    this.metaService.updateTag({ property: 'og:image', content: 'https://blog.kevinnorgaard.com/assets/thumbnail.png' });
     this.metaService.addTag({ property: 'og:title', content: 'Wellness' });
     this.metaService.addTag({ property: 'og:description', content: 'Wellness description goes here' });
     this.metaService.addTag({ name: 'twitter:title', content: 'Wellness' });
     this.metaService.addTag({ name: 'twitter:card', content: 'summary_large_image' });
     this.metaService.addTag({ name: 'twitter:description', content: 'Wellness description goes here' });
-    this.metaService.addTag({ name: 'twitter:image', content: 'https://carinacollective.kevinnorgaard.com/assets/thumbnail.png' });
+    this.metaService.addTag({ name: 'twitter:image', content: 'https://blog.kevinnorgaard.com/assets/thumbnail.png' });
   }
 }
