@@ -1,6 +1,6 @@
 # Contentful Blog
 
-A blog and lifestyle content platform built with Angular and server-side rendering, powered by the Contentful headless CMS. The platform serves multi-category content across fashion, beauty, wellness, and art — featuring dynamic rich-text rendering, an Instagram feed, social sharing, and a Disqus-powered comments system.
+A blog and lifestyle content platform built with Angular and server-side rendering, powered by the Contentful headless CMS. The platform serves multi-category content across fashion, beauty, wellness, and art -- featuring dynamic rich-text rendering, an Instagram feed, social sharing, and a Disqus-powered comments system.
 
 ## Prerequisites
 
@@ -22,18 +22,10 @@ npm start
 
 Serves the app at [http://localhost:4200/](http://localhost:4200/) with live reload.
 
-## SSR Development
-
-```bash
-npm run dev:ssr
-```
-
-Serves the app with server-side rendering enabled.
-
 ## Production Build
 
 ```bash
-npm run build:ssr
+npm run build
 ```
 
 Output is written to `dist/contentful-blog/`. Start the SSR server with:
@@ -42,19 +34,28 @@ Output is written to `dist/contentful-blog/`. Start the SSR server with:
 npm run serve:ssr
 ```
 
+## Docker
+
+```bash
+docker build -t blog .
+docker run -p 8080:8080 blog
+```
+
 ## Deploy
 
 ```bash
 npm run deploy
 ```
 
-Builds for production and syncs to the remote server via rsync.
+Deploys to Google Cloud Run via Cloud Build. This builds the Docker image using Kaniko and deploys it to the `blog` Cloud Run service in `us-west1`.
 
 ## Tech Stack
 
 - **Angular** 21 with **@angular/ssr** (server-side rendering)
-- **TypeScript** 5.8
+- **TypeScript** 5.9
 - **Contentful** SDK for CMS content
 - **ngx-disqus** for comments
 - **RxJS** for reactive programming
-- **Express** for the SSR server
+- **Express** 5 for the SSR server
+- **Google Cloud Run** for hosting
+- **Docker** with multi-stage builds

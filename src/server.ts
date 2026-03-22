@@ -16,7 +16,7 @@ app.use(express.static(browserDistFolder, {
 }));
 
 // All regular routes use the Angular engine
-app.use('/**', (req, res, next) => {
+app.use('/{*path}', (req, res, next) => {
   angularApp
     .handle(req)
     .then((response) =>

@@ -1,4 +1,4 @@
-.git
-.angular
 node_modules
 dist
+.git
+.angular
