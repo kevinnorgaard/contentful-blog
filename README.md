@@ -6,7 +6,7 @@ Blog and lifestyle platform for [blog.kevinnorgaard.com](https://blog.kevinnorga
 
 | Layer | Choice |
 |---|---|
-| Runtime | Node.js 22 |
+| Runtime | Node.js 24 LTS |
 | Framework | Angular 21 (standalone, SSR via `@angular/ssr`) |
 | Language | TypeScript 5.9 |
 | CMS | Contentful (REST SDK) |
@@ -52,7 +52,7 @@ src/
 ## Local Development
 
 ```bash
-nvm use 22
+nvm use 24
 npm install
 npm start
 # Open http://localhost:4200
